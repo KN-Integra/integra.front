@@ -1,4 +1,6 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
+import { resolve } from 'path'
+
 export default defineNuxtConfig({
   app: {
     head: {
@@ -17,8 +19,27 @@ export default defineNuxtConfig({
   components: true,
 
   modules: [
+    '@nuxt/content'
     // 'vue-sweetalert2/nuxt'
   ],
+
+  content: {
+    sources: {
+      content: {
+        driver: 'fs',
+        prefix: '/docs',
+        base: resolve(__dirname, 'content')
+      }
+    },
+    github: {
+      driver: 'github',
+      prefix: '/blog',
+      repo: `${process.env.GITHUB_USER}/${process.env.GITHUB_REPO}`,
+      token: process.env.GITHUB_TOKEN,
+      branch: process.env.GITHUB_BRANCH,
+      dir: '/content'
+    }
+  },
 
   build: {
     transpile: [
