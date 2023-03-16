@@ -35,3 +35,12 @@ header a:not(.router-link-exact-active) span.nav {
 header a.router-link-exact-active span.nav {
   @apply decoration-solid decoration-from-font underline underline-offset-2;
 }
+
+h1 {
+  @apply font-bold;
+  @apply text-4xl;
+  @apply leading-tight;
+  @apply tracking-tight;
+  @apply mb-4;
+  @apply text-red-900;
+}

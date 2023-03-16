@@ -14,5 +14,11 @@ useTabs: false
 tabWidth: 2
 
 printWidth: 120
+proseWrap: always
 
 arrowParens: always
+
+htmlWhitespaceSensitivity: css
+
+insertPragma: false
+requirePragma: false
