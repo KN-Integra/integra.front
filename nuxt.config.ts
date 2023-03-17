@@ -2,18 +2,22 @@
 export default defineNuxtConfig({
   app: {
     head: {
-      title: 'nuxt3-boilerplate',
+      title: 'INTegra',
       meta: [
         { charset: 'utf-8' },
         { name: 'viewport', content: 'width=device-width, initial-scale=1' },
         { hid: 'description', name: 'description', content: '' },
         { name: 'format-detection', content: 'telephone=no' }
       ],
-      link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }]
+      link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],
+      htmlAttrs: {
+        lang: 'en',
+        class: 'dark'
+      }
     }
   },
 
-  css: ['@/assets/css/tailwind.css'],
+  css: ['@/assets/css/tailwind.css', '@/assets/css/main.css'],
   components: true,
 
   modules: [
