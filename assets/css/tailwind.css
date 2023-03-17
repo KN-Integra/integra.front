@@ -21,6 +21,14 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+*,
+*::before,
+*::after {
+  @apply transition-all;
+  @apply ease-in-out;
+  @apply duration-300;
+}
+
 body {
   @apply bg-white dark:bg-black;
 }
