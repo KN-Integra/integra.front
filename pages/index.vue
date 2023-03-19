@@ -15,19 +15,19 @@ export default {
   </Head>
 
   <header
-    class="relative flex flex-col items-center bg-cover bg-blend-overlay dark:bg-blend-multiply bg-white/75 dark:bg-slate-800/75 bg-header-mobile lg:bg-header-desktop py-4 px-2 md:p-0 pb-8 md:pb-12"
+    class="relative flex flex-col items-center bg-cover bg-blend-overlay dark:bg-blend-multiply bg-white/75 dark:bg-slate-800/75 bg-header-mobile lg:bg-header-desktop py-4 px-2 md:p-0 pb-12 md:pb-24 lg:pb-32"
   >
     <div class="container mx-auto w-full flex flex-col items-center gap-8">
       <index-navigation />
 
-      <hr class="w-full h-px border-0 bg-gray-200 dark:bg-gray-600 lg:mt-8" />
+      <hr class="w-5/6 h-px border-0 bg-gray-200 dark:bg-gray-600 lg:mt-8" />
 
       <div class="tracking-[0.25rem] text-center md:text-2xl lg:w-5/6">
         Koło Integra gromadzi ludzi z pasją, którzy poprzez realizację projektów rozwijają swoje zainteresowania.
         Integra to jest to!
       </div>
 
-      <hr class="w-full h-px border-0 bg-gray-200 dark:bg-gray-600" />
+      <hr class="w-5/6 h-px border-0 bg-gray-200 dark:bg-gray-600" />
 
       <div class="capitalize flex flex-col items-center gap-6 tracking-[0.25rem]">
         <span class="md:text-4xl">KOŁO NAUKOWE INTEGRA</span>
