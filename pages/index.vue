@@ -15,7 +15,7 @@ export default {
   </Head>
 
   <header
-    class="relative flex flex-col items-center justify-evenly bg-cover bg-blend-overlay dark:bg-blend-multiply bg-white/75 dark:bg-slate-800/75 bg-header-mobile lg:bg-header-desktop py-4 px-2 md:p-0 pb-12 md:h-screen"
+    class="relative flex flex-col items-center justify-evenly bg-cover bg-blend-overlay dark:bg-blend-multiply bg-white/75 dark:bg-slate-800/75 bg-header-mobile lg:bg-header-desktop pt-4 px-2 pb-12 md:p-0 md:pb-8 md:min-h-screen"
   >
     <div class="container mx-auto w-full h-full flex flex-col items-center gap-8">
       <index-navigation />
@@ -29,7 +29,7 @@ export default {
 
       <hr class="w-full h-px border-0 bg-gray-200 dark:bg-gray-600" />
 
-      <div class="capitalize flex flex-col items-center gap-6 tracking-[0.25rem]">
+      <div class="text-center capitalize flex flex-col items-center gap-6 tracking-[0.25rem]">
         <span class="md:text-4xl">KOŁO NAUKOWE INTEGRA</span>
         <nuxt-link
           to="https://www.facebook.com/knintegra"
