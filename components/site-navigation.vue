@@ -13,7 +13,7 @@ export default {
 </script>
 
 <template>
-  <nav class="p-2 bg-white border-gray-200 dark:bg-gray-900 dark:border-gray-700">
+  <nav class="p-2 bg-white border-b border-b-gray-200 dark:bg-gray-900 dark:border-b-gray-700">
     <div class="flex flex-row flex-wrap items-center justify-between w-full mx-auto">
       <nuxt-link to="/" class="flex items-center">
         <img src="https://i.postimg.cc/0jVhbXr4/integra-icon.png" class="h-6 mr-3 sm:h-10" :alt="`${appTitle} Logo`" />

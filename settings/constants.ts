@@ -46,6 +46,7 @@ export const MENU_ITEMS = [
   {
     title: 'ADR',
     type: 'link',
-    path: '/adr'
+    // path: '/adr'
+    path: '/teapot'
   }
 ]
