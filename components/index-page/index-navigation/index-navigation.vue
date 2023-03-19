@@ -1,7 +1,9 @@
 <script lang="ts">
-import ThemeSwitcher from './theme-switcher.vue'
-
+import ThemeSwitcher from '@/components/theme-switcher.vue'
 import { APP_TITLE, MENU_ITEMS } from '@/settings/constants'
+
+// @ts-expect-error - TS doesn't know about CSS modules
+import style from './index-navigation.module.css'
 
 export default {
   name: 'IndexNavigationComponent',
@@ -13,7 +15,12 @@ export default {
     sidebarOpen: false,
     appTitle: APP_TITLE,
     menuItems: MENU_ITEMS
-  })
+  }),
+  computed: {
+    classes() {
+      return style
+    }
+  }
 }
 </script>
 
@@ -34,7 +41,7 @@ export default {
         <button
           data-collapse-toggle="navbar-dropdown"
           type="button"
-          class="inline-flex items-center p-2 ml-3 text-sm text-gray-100 rounded-lg lg:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
+          :class="classes['open-navbar-button']"
           aria-controls="navbar-dropdown"
           :aria-expanded="navbarOpen"
           @click="navbarOpen = !navbarOpen"
@@ -46,10 +53,8 @@ export default {
         </button>
       </div>
 
-      <div class="w-full lg:flex lg:justify-center" id="navbar-dropdown" :class="navbarOpen ? 'block' : 'hidden'">
-        <ul
-          class="w-[calc(100%_-_1rem)] lg:w-max flex flex-col absolute rounded-lg p-2 gap-2 lg:gap-8 lg:flex-row lg:mt-4 lg:text-xl lg:font-medium border border-gray-100 bg-gray-50 dark:bg-gray-800 dark:border-gray-700 lg:bg-transparent lg:border-none lg:dark:bg-transparent lg:darkborder-none"
-        >
+      <div id="navbar-dropdown" class="w-full lg:flex lg:justify-center" :class="navbarOpen ? 'block' : 'hidden'">
+        <ul :class="classes['links-ul']">
           <li v-for="item in menuItems" :key="item.title">
             <!-- class="block py-2 pl-3 pr-4 text-white bg-blue-700 rounded lg:bg-transparent lg:text-blue-700 lg:p-0 lg:dark:text-white dark:bg-blue-600 lg:dark:bg-transparent" -->
             <!-- aria-current="page" -->
@@ -63,11 +68,11 @@ export default {
 
             <div v-else-if="item.type === 'dropdown'" class="relative" @blur="sidebarOpen = false">
               <button
-                type="button"
-                @click="sidebarOpen = !sidebarOpen"
                 id="dropdownLinkChildren"
+                type="button"
                 data-dropdown-toggle="dropdownNavbar"
                 class="flex items-center justify-start w-full py-2 pl-3 pr-4 rounded lg:border-0 lg:p-0 text-gray-700 hover:text-black hover:bg-white lg:hover:bg-transparent dark:text-gray-300 dark:hover:text-white dark:hover:bg-gray-700 lg:dark:hover:bg-transparent"
+                @click="sidebarOpen = !sidebarOpen"
               >
                 {{ item.title }}
                 <lazy-client-only>

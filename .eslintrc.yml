@@ -18,6 +18,8 @@ extends:
   - '@vue/eslint-config-airbnb'
   - '@vue/eslint-config-typescript'
   - '@vue/eslint-config-prettier'
+  - '@nuxtjs'
+  - '@nuxtjs/eslint-config-typescript'
   - plugin:nuxt/recommended
   - plugin:import/recommended
   - plugin:import/typescript
@@ -45,6 +47,13 @@ rules:
         normal: never
         void: always
 
+  no-underscore-dangle:
+    - error
+    - allowAfterThis: true
+      allow:
+        - '_path'
+        - '_text'
+
   max-nested-callbacks:
     - error
     - max: 4
@@ -66,11 +75,12 @@ rules:
   semi:
     - error
     - never
+
   import/no-unresolved:
     - warn
     - ignore:
       - '^@/*'
-      - '^~/*'
+      - '#content/server'
   import/prefer-default-export: 'off'
   import/no-deprecated: error
   import/named: error

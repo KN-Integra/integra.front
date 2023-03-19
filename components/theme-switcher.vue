@@ -9,7 +9,6 @@ export default {
       return
     }
 
-    this.$colorMode.preference = 'dark'
     localStorage.setItem('color-mode', 'dark')
   },
   methods: {

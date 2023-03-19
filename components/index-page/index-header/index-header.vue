@@ -1,33 +1,35 @@
 <script lang="ts">
-import IndexNavigation from '~~/components/index-navigation.vue'
+import IndexNavigation from '@/components/index-page/index-navigation/index-navigation.vue'
+
+// @ts-expect-error
+import style from './index-header.module.css'
 
 export default {
-  name: 'IndexPage',
+  name: 'IndexHeader',
   components: {
     IndexNavigation
+  },
+  computed: {
+    classes() {
+      return style
+    }
   }
 }
 </script>
 
 <template>
-  <Head>
-    <Title>Koło Naukowe Integra AGH</Title>
-  </Head>
-
-  <header
-    class="relative flex flex-col items-center justify-evenly bg-cover bg-blend-overlay dark:bg-blend-multiply bg-white/75 dark:bg-slate-800/75 bg-header-mobile lg:bg-header-desktop pt-4 px-2 pb-12 md:p-0 md:pb-8 md:min-h-screen"
-  >
+  <header :class="classes['index-header']">
     <div class="container mx-auto w-full h-full flex flex-col items-center gap-8">
       <index-navigation />
 
-      <hr class="w-full h-px border-0 bg-gray-200 dark:bg-gray-600 lg:mt-8" />
+      <hr class="w-full h-px border-0 bg-gray-200 dark:bg-gray-600 hidden sm:block" />
 
-      <div class="tracking-[0.25rem] text-center md:text-2xl lg:w-5/6">
+      <div class="tracking-[0.25rem] text-center md:text-2xl lg:w-5/6 hidden sm:block">
         Koło Integra gromadzi ludzi z pasją, którzy poprzez realizację projektów rozwijają swoje zainteresowania.
         Integra to jest to!
       </div>
 
-      <hr class="w-full h-px border-0 bg-gray-200 dark:bg-gray-600" />
+      <hr class="w-full h-px border-0 bg-gray-200 dark:bg-gray-600 hidden sm:block" />
 
       <div class="text-center capitalize flex flex-col items-center gap-6 tracking-[0.25rem]">
         <span class="md:text-4xl">KOŁO NAUKOWE INTEGRA</span>
@@ -42,6 +44,4 @@ export default {
       </div>
     </div>
   </header>
-
-  <main class="prose container mx-auto px-4"></main>
 </template>

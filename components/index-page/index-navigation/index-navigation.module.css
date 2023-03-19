@@ -1,0 +1,28 @@
+.open-navbar-button {
+  @apply inline-flex items-center p-2 ml-3 text-sm text-gray-100 rounded-lg lg:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600;
+}
+
+.links-ul {
+  /* Layout */
+  @apply flex absolute rounded-lg border;
+
+  @apply flex-col w-[calc(100%_-_1rem)] gap-2;
+  @apply lg:flex-row lg:w-max lg:gap-8 lg:static;
+
+  /* Typography */
+  @apply lg:text-xl lg:font-medium;
+
+  /* Padding */
+  @apply p-2;
+
+  /* Margin */
+  @apply lg:mt-4;
+
+  /* Light Mode */
+  @apply border-gray-100 bg-gray-50;
+  @apply lg:bg-transparent lg:border-none;
+
+  /* Dark Mode */
+  @apply dark:bg-gray-800 dark:border-gray-700;
+  @apply lg:dark:bg-transparent lg:dark:border-none;
+}

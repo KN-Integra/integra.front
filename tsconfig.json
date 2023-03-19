@@ -11,7 +11,7 @@
     "noImplicitThis": true,
     "types": [
       "@nuxt/types",
-      "@nuxt/content",
+      "@nuxt/content"
     ]
-  }
+  },
 }

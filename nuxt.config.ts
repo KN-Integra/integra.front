@@ -1,3 +1,5 @@
+import { resolve } from 'path'
+
 import { APP_TITLE } from './settings/constants'
 
 // https://nuxt.com/docs/api/configuration/nuxt-config
@@ -97,6 +99,10 @@ const icons = [
 
 export default defineNuxtConfig({
   app: {
+    pageTransition: {
+      name: 'page',
+      mode: 'out-in'
+    },
     head: {
       title: APP_TITLE,
       meta: [
@@ -123,8 +129,30 @@ export default defineNuxtConfig({
     }
   },
 
+  nitro: {
+    prerender: {
+      routes: ['/sitemap.xml']
+    }
+  },
+
   css: ['@/assets/css/tailwind.css', '@/assets/css/main.css'],
   components: true,
+
+  colorMode: {
+    preference: 'dark',
+    fallback: 'dark'
+  },
+
+  content: {
+    ignores: ['README.md', 'LICENSE.md', 'CHANGELOG.md', 'CONTRIBUTING.md', 'CODE_OF_CONDUCT.md', 'SECURITY.md'],
+    sources: {
+      content: {
+        driver: 'fs',
+        prefix: '',
+        base: resolve(__dirname, 'content/content')
+      }
+    }
+  },
 
   modules: [
     '@nuxt/content',

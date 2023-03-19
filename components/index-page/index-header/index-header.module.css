@@ -1,0 +1,17 @@
+.index-header {
+  /* Layout */
+  @apply relative flex flex-col items-center justify-evenly bg-cover;
+
+  @apply md:min-h-screen;
+  @apply bg-header-mobile lg:bg-header-desktop;
+
+  /* Padding */
+  @apply pt-4 px-2 pb-24;
+  @apply lg:p-0;
+
+  /* Light mode */
+  @apply bg-blend-overlay bg-white/75 ;
+
+  /* Dark mode */
+  @apply dark:bg-blend-multiply dark:bg-slate-800/75;
+}
