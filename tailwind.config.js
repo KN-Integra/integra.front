@@ -21,7 +21,9 @@ module.exports = {
       'gradient-light': 'linear-gradient(180deg, rgba(251, 146, 60, 0.25) 0%, rgba(251, 146, 60, 0.75) 100%)',
       'gradient-dark': 'linear-gradient(180deg, rgba(30, 58, 138, 0.25) 0%, rgba(30, 58, 138, 0.75) 100%)',
       'home-gradient-light': 'linear-gradient(180deg, #FB923C 0%, rgba(251, 146, 60, 0.5) 100%)',
-      'home-gradient-dark': 'linear-gradient(180deg, rgba(30, 58, 138, 0.75) 0%, rgba(30, 58, 138, 0.25) 100%)'
+      'home-gradient-dark': 'linear-gradient(180deg, rgba(30, 58, 138, 0.75) 0%, rgba(30, 58, 138, 0.25) 100%)',
+      'header-desktop': 'url("https://i.postimg.cc/fLHc2Cfc/header-desktop.jpg")',
+      'header-mobile': 'url("https://i.postimg.cc/RFC1LyKC/header-mobile.jpg")'
     },
     dropShadow: {
       'home-title-light': '0px 4px 4px rgba(0, 0, 0, 0.25)',

@@ -1,16 +1,16 @@
 <script lang="ts">
-import Navigation from '@/components/Navigation.vue'
+import SiteNavigation from '~~/components/site-navigation.vue'
 
 export default {
   name: 'BlogSlug',
   components: {
-    Navigation
+    SiteNavigation
   }
 }
 </script>
 
 <template>
-  <Navigation />
+  <site-navigation />
 
   <main class="prose container mx-auto px-4">
     <ContentDoc />
