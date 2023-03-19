@@ -15,9 +15,9 @@ export default {
   </Head>
 
   <header
-    class="relative flex flex-col items-center bg-cover bg-blend-overlay dark:bg-blend-multiply bg-white/75 dark:bg-slate-800/75 bg-header-mobile lg:bg-header-desktop py-4 px-2 md:p-0 pb-12 md:pb-24 lg:pb-32"
+    class="relative flex flex-col items-center justify-evenly bg-cover bg-blend-overlay dark:bg-blend-multiply bg-white/75 dark:bg-slate-800/75 bg-header-mobile lg:bg-header-desktop py-4 px-2 md:p-0 pb-12 md:h-screen"
   >
-    <div class="container mx-auto w-full flex flex-col items-center gap-8">
+    <div class="container mx-auto w-full h-full flex flex-col items-center gap-8">
       <index-navigation />
 
       <hr class="w-5/6 h-px border-0 bg-gray-200 dark:bg-gray-600 lg:mt-8" />
@@ -41,21 +41,6 @@ export default {
         </nuxt-link>
       </div>
     </div>
-
-    <!-- <picture
-      class="relative opacity-50 after:block after:w-full after:h-full after:opacity-50 after:bg-gray-400 after:dark:bg-gray-600 after:absolute after:top-0 after:left-0 after:z-10 after:content-['']"
-    >
-      <img
-        src="https://i.postimg.cc/fLHc2Cfc/header-large.jpg"
-        alt="INTegra large header"
-        class="w-full hidden lg:block"
-      />
-      <img
-        src="https://i.postimg.cc/RFC1LyKC/header-mobile.jpg"
-        alt="INTegra mobile header"
-        class="w-full block lg:hidden"
-      />
-    </picture> -->
   </header>
 
   <main class="prose container mx-auto px-4"></main>
