@@ -37,7 +37,7 @@ export default {
         </button>
       </div>
 
-      <div class="w-full lg:block lg:w-auto" id="navbar-dropdown" :class="navbarOpen ? 'block' : 'hidden'">
+      <div id="navbar-dropdown" class="w-full lg:block lg:w-auto" :class="navbarOpen ? 'block' : 'hidden'">
         <ul
           class="flex flex-col mt-4 items-center rounded-lg border border-gray-100 bg-gray-50 p-2 gap-2 lg:flex-row lg:space-x-8 lg:mt-0 lg:text-sm lg:font-medium lg:border-0 lg:bg-white dark:bg-gray-800 lg:dark:bg-gray-900 dark:border-gray-700"
         >
@@ -55,10 +55,10 @@ export default {
             <div v-else-if="item.type === 'dropdown'" class="relative" @blur="sidebarOpen = false">
               <button
                 type="button"
-                @click="sidebarOpen = !sidebarOpen"
                 id="dropdownNavbarLink"
                 data-dropdown-toggle="dropdownNavbar"
                 class="flex items-center justify-between w-full py-2 pl-3 pr-4 font-medium text-gray-700 rounded hover:bg-gray-100 lg:hover:bg-transparent lg:border-0 lg:hover:text-blue-700 lg:p-0 lg:w-auto dark:text-gray-400 dark:hover:text-white dark:focus:text-white dark:border-gray-700 dark:hover:bg-gray-700 lg:dark:hover:bg-transparent"
+                @click="sidebarOpen = !sidebarOpen"
               >
                 {{ item.title }}
                 <lazy-client-only>
