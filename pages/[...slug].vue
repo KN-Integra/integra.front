@@ -16,7 +16,7 @@ export default {
 <template>
   <site-navigation />
 
-  <main class="prose container mx-auto px-4">
+  <main class="prose container mx-auto mt-8 px-4 flex flex-row gap-4 justify-center">
     <content-doc>
       <template #not-found>
         <not-found />

@@ -4,23 +4,29 @@ export default {
   data(): {
     theme: 'light' | 'dark'
   } {
-    return {
-      theme: 'light'
-    }
-  },
-  beforeMount(): void {
     const theme = localStorage.getItem('theme')
     const themeMediaQuery = window.matchMedia('(prefers-color-scheme: dark)')
+    let currentTheme = theme
 
     if (!(themeMediaQuery.matches || theme) || theme === 'light') {
       document.documentElement.classList.remove('dark')
       localStorage.setItem('theme', 'light')
-      this.$data.theme = 'light'
+      currentTheme = 'light'
     } else {
       document.documentElement.classList.add('dark')
       localStorage.setItem('theme', 'dark')
-      this.$data.theme = 'dark'
+      currentTheme = 'dark'
     }
+
+    // eslint-disable-next-line no-console
+    console.log('Current theme:', currentTheme)
+
+    return {
+      theme: currentTheme as 'light' | 'dark'
+    }
+  },
+  beforeMount(): void {
+    const themeMediaQuery = window.matchMedia('(prefers-color-scheme: dark)')
 
     themeMediaQuery.addEventListener('change', (e) => {
       this.$data.theme = themeMediaQuery.matches ? 'dark' : 'light'
