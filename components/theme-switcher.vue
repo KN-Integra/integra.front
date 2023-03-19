@@ -22,16 +22,16 @@ export default {
       this.$data.theme = 'dark'
     }
 
-    themeMediaQuery.addEventListener('change', (e) => {
-      this.$data.theme = themeMediaQuery.matches ? 'dark' : 'light'
-      localStorage.setItem('theme', this.$data.theme)
+    // themeMediaQuery.addEventListener('change', (e) => {
+    //   this.$data.theme = themeMediaQuery.matches ? 'dark' : 'light'
+    //   localStorage.setItem('theme', this.$data.theme)
 
-      if (e.matches) {
-        document.documentElement.classList.add('dark')
-      } else {
-        document.documentElement.classList.remove('dark')
-      }
-    })
+    //   if (e.matches) {
+    //     document.documentElement.classList.add('dark')
+    //   } else {
+    //     document.documentElement.classList.remove('dark')
+    //   }
+    // })
   },
   methods: {
     toggleTheme(): void {
