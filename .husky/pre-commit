@@ -4,7 +4,7 @@
 echo '🏗️👷 Styling your project before committing'
 
 # Check Prettier and ESLint standards
-yarn lint ||
+yarn lint:js ||
 (
   echo '❌ Linting Check Failed! ❌
     Run `yarn lintfix`, add changes and try commit again.';
