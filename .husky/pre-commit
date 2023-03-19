@@ -1,0 +1,34 @@
+#!/bin/sh
+. "$(dirname "$0")/_/husky.sh"
+
+echo '🏗️👷 Styling your project before committing'
+
+# Check Prettier and ESLint standards
+yarn lint ||
+(
+  echo '❌ Linting Check Failed! ❌
+    Run `yarn lintfix`, add changes and try commit again.';
+  false;
+)
+
+echo '🏗️👷 Building your project before committing'
+
+# Build project
+yarn build ||
+(
+  echo '❌ Build Failed! ❌ 
+    Run `yarn build` and try commit again.'
+  false; 
+)
+
+echo '🏗️👷 Testing your project before committing'
+yarn test --passWithNoTests ||
+(
+  echo '❌ Testing Failed! ❌ 
+    Run `yarn test` and try commit again.'
+  false; 
+)
+
+
+# If everything passes... Now we can commit
+echo '✅ Everything looks good. Creating commit... ✅'
