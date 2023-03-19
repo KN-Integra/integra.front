@@ -21,15 +21,16 @@
     "*.**": "prettier --check --ignore-unknown"
   },
   "dependencies": {
-    "@nuxt/content": "^2.5.2",
-    "eslint-plugin-jsdoc": "^40.0.3",
-    "nuxt": "3.0.0",
-    "vue-sweetalert2": "^5.0.5",
     "@fortawesome/fontawesome-svg-core": "^6.2.1",
     "@fortawesome/free-brands-svg-icons": "^6.2.1",
     "@fortawesome/free-regular-svg-icons": "^6.2.1",
     "@fortawesome/free-solid-svg-icons": "^6.2.1",
-    "@fortawesome/vue-fontawesome": "^3.0.2"
+    "@fortawesome/vue-fontawesome": "^3.0.2",
+    "@nuxt/content": "^2.5.2",
+    "@nuxtjs/color-mode": "^3.2.0",
+    "eslint-plugin-jsdoc": "^40.0.3",
+    "nuxt": "3.0.0",
+    "vue-sweetalert2": "^5.0.5"
   },
   "devDependencies": {
     "@babel/eslint-parser": "^7.19.1",

@@ -1,47 +1,22 @@
 <script lang="ts">
 export default {
   name: 'ThemeSwitcher',
-  data(): {
-    theme: 'light' | 'dark'
-  } {
-    return {
-      theme: 'light'
-    }
-  },
-  beforeMount(): void {
-    const theme = localStorage.getItem('theme')
-    const themeMediaQuery = window.matchMedia('(prefers-color-scheme: dark)')
+  mounted() {
+    const colorMode = localStorage.getItem('color-mode')
 
-    if (!(themeMediaQuery.matches || theme) || theme === 'light') {
-      document.documentElement.classList.remove('dark')
-      localStorage.setItem('theme', 'light')
-      this.$data.theme = 'light'
-    } else {
-      document.documentElement.classList.add('dark')
-      localStorage.setItem('theme', 'dark')
-      this.$data.theme = 'dark'
+    if (colorMode === 'dark' || colorMode === 'light') {
+      this.$colorMode.preference = colorMode
+      return
     }
 
-    // themeMediaQuery.addEventListener('change', (e) => {
-    //   this.$data.theme = themeMediaQuery.matches ? 'dark' : 'light'
-    //   localStorage.setItem('theme', this.$data.theme)
-
-    //   if (e.matches) {
-    //     document.documentElement.classList.add('dark')
-    //   } else {
-    //     document.documentElement.classList.remove('dark')
-    //   }
-    // })
+    this.$colorMode.preference = 'dark'
+    localStorage.setItem('color-mode', 'dark')
   },
   methods: {
     toggleTheme(): void {
-      if (!process.client) {
-        return
-      }
+      this.$colorMode.preference = this.$colorMode.preference === 'dark' ? 'light' : 'dark'
 
-      document.documentElement.classList.toggle('dark')
-      localStorage.setItem('theme', document.documentElement.classList.contains('dark') ? 'dark' : 'light')
-      this.$data.theme = document.documentElement.classList.contains('dark') ? 'dark' : 'light'
+      localStorage.setItem('color-mode', this.$colorMode.preference)
     }
   }
 }

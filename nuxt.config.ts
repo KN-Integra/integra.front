@@ -1,3 +1,5 @@
+import { APP_TITLE } from './settings/constants'
+
 // https://nuxt.com/docs/api/configuration/nuxt-config
 const properties = [
   {
@@ -72,10 +74,31 @@ const twitterProperties = [
   }
 ]
 
+const icons = [
+  {
+    rel: 'icon',
+    type: 'image/png',
+    href: 'https://i.postimg.cc/wBtrHt7Y/integra-logo-100x100.png',
+    sizes: '32x32'
+  },
+  {
+    rel: 'icon',
+    type: 'image/png',
+    href: 'https://i.postimg.cc/bNTWRcKW/integra-logo-250x249.png',
+    sizes: '192x192'
+  },
+  {
+    rel: 'apple-touch-icon',
+    type: 'image/png',
+    href: 'https://i.postimg.cc/bNTWRcKW/integra-logo-250x249.png',
+    sizes: '192x192'
+  }
+]
+
 export default defineNuxtConfig({
   app: {
     head: {
-      title: 'INTegra',
+      title: APP_TITLE,
       meta: [
         { charset: 'utf-8' },
         { name: 'viewport', content: 'width=device-width, initial-scale=1' },
@@ -93,29 +116,9 @@ export default defineNuxtConfig({
         ...properties,
         ...twitterProperties
       ],
-      link: [
-        {
-          rel: 'icon',
-          type: 'image/png',
-          href: 'https://i.postimg.cc/wBtrHt7Y/integra-logo-100x100.png',
-          sizes: '32x32'
-        },
-        {
-          rel: 'icon',
-          type: 'image/png',
-          href: 'https://i.postimg.cc/bNTWRcKW/integra-logo-250x249.png',
-          sizes: '192x192'
-        },
-        {
-          rel: 'apple-touch-icon',
-          type: 'image/png',
-          href: 'https://i.postimg.cc/bNTWRcKW/integra-logo-250x249.png',
-          sizes: '192x192'
-        }
-      ],
+      link: [...icons],
       htmlAttrs: {
-        lang: 'pl',
-        class: 'dark'
+        lang: 'pl'
       }
     }
   },
@@ -124,7 +127,8 @@ export default defineNuxtConfig({
   components: true,
 
   modules: [
-    '@nuxt/content'
+    '@nuxt/content',
+    '@nuxtjs/color-mode'
     // 'vue-sweetalert2/nuxt'
   ],
 
