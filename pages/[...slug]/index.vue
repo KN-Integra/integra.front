@@ -1,5 +1,5 @@
 <script lang="ts">
-import SiteNavigation from '@/components/site-navigation.vue'
+import SiteNavigation from '@/components/site-navigation/site-navigation.vue'
 import EmptyDoc from '@/components/slots/empty-doc.vue'
 import NotFound from '@/components/slots/not-found.vue'
 
@@ -19,7 +19,7 @@ export default {
       <site-navigation />
     </header>
 
-    <main class="prose container mx-auto mt-8 px-4 flex flex-row gap-4 justify-center">
+    <main class="prose container mx-auto mt-8 px-4 flex flex-col gap-4 justify-center">
       <content-doc>
         <template #not-found>
           <not-found />

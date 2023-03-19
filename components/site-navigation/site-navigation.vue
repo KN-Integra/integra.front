@@ -54,8 +54,8 @@ export default {
 
             <div v-else-if="item.type === 'dropdown'" class="relative" @blur="sidebarOpen = false">
               <button
-                type="button"
                 id="dropdownNavbarLink"
+                type="button"
                 data-dropdown-toggle="dropdownNavbar"
                 class="flex items-center justify-between w-full py-2 pl-3 pr-4 font-medium text-gray-700 rounded hover:bg-gray-100 lg:hover:bg-transparent lg:border-0 lg:hover:text-blue-700 lg:p-0 lg:w-auto dark:text-gray-400 dark:hover:text-white dark:focus:text-white dark:border-gray-700 dark:hover:bg-gray-700 lg:dark:hover:bg-transparent"
                 @click="sidebarOpen = !sidebarOpen"
