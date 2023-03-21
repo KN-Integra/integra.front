@@ -15,7 +15,6 @@ extends:
   - eslint:recommended
   - plugin:@typescript-eslint/recommended
   - plugin:vue/vue3-essential
-  - '@vue/eslint-config-airbnb'
   - '@vue/eslint-config-typescript'
   - '@vue/eslint-config-prettier'
   - '@nuxtjs'
