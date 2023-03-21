@@ -3,7 +3,7 @@ import ThemeSwitcher from '@/components/theme-switcher.vue'
 import { APP_TITLE } from '@/settings/constants'
 
 // @ts-expect-error - TS doesn't know about CSS modules
-import style from './site-navigation.module.css'
+import style from './index-navigation.module.css'
 
 interface SiteNavData {
   navbarOpen: boolean
@@ -11,7 +11,7 @@ interface SiteNavData {
 }
 
 export default {
-  name: 'NavigationComponent',
+  name: 'IndexNavigationComponent',
   components: {
     ThemeSwitcher
   },
@@ -63,10 +63,14 @@ export default {
 </script>
 
 <template>
-  <nav :class="classes['navbar']">
-    <div class="flex flex-row flex-wrap items-center justify-between w-full mx-auto">
+  <nav class="p-2 w-full lg:mt-8 relative">
+    <div class="flex flex-row flex-wrap lg:flex-col items-center justify-between w-full mx-auto gap-4">
       <nuxt-link to="/" class="flex items-center">
-        <img src="https://i.postimg.cc/0jVhbXr4/integra-icon.png" class="h-6 mr-3 sm:h-10" :alt="`${appTitle} Logo`" />
+        <img
+          src="https://i.postimg.cc/0jVhbXr4/integra-icon.png"
+          class="h-8 mr-3 sm:h-10 lg:h-16"
+          :alt="`${appTitle} Logo`"
+        />
       </nuxt-link>
 
       <div>
@@ -75,7 +79,7 @@ export default {
         <button
           data-collapse-toggle="navbar-dropdown"
           type="button"
-          :class="classes['navbar-toggle']"
+          :class="classes['navbar-button']"
           aria-controls="navbar-dropdown"
           :aria-expanded="navbarOpen"
           @click="navbarOpen = !navbarOpen"
@@ -87,18 +91,18 @@ export default {
         </button>
       </div>
 
-      <div id="navbar-dropdown" class="w-full lg:block lg:w-auto" :class="navbarOpen ? 'block' : 'hidden'">
-        <ul
-          class="z-50 static md:absolute md:w-[calc(100%_-_1rem)] lg:w-full lg:static flex flex-col mt-4 lg:items-center rounded-lg border border-gray-100 bg-gray-50 p-2 gap-2 lg:flex-row lg:space-x-8 lg:mt-0 lg:text-sm lg:font-medium lg:border-0 lg:bg-white dark:bg-gray-800 lg:dark:bg-gray-900 dark:border-gray-700 lg:gap-0"
-        >
+      <div
+        id="navbar-dropdown"
+        class="w-full lg:flex lg:justify-center"
+        :class="`${classes['navbar-dropdown']} ${navbarOpen ? 'block' : classes['hide']}`"
+      >
+        <ul :class="classes['links-ul']">
           <li v-for="site in sitemap" :key="site._path.slice(1)">
             <!-- TODO: Think about if we should show a list of article categories here -->
             <nuxt-link
               v-if="!site.children || site.children.length === 0 || site._path === '/articles'"
               :to="site._path"
-              :class="`${classes['navbar-link']} ${
-                site._path === $route.path ? classes['navbar-link--active'] : classes['navbar-link--inactive']
-              }`"
+              :class="classes['navbar-link']"
               :aria-current="site._path === $route.path ? 'page' : undefined"
             >
               {{ site.title }}
@@ -114,11 +118,8 @@ export default {
                 :id="`dropdown-button-${site._path.slice(1)}`"
                 type="button"
                 :data-dropdown-toggle="`dropdown-${site._path.slice(1)}`"
-                :class="`${classes['navbar-button']} ${
-                  $route.path.startsWith(`${site._path}/`)
-                    ? classes['navbar-link--active']
-                    : classes['navbar-link--inactive']
-                }`"
+                class="!flex items-center justify-start"
+                :class="classes['navbar-link']"
                 @click="toggleSidebar"
               >
                 {{ site.title }}
@@ -135,11 +136,7 @@ export default {
                   <li v-for="child in site.children" :key="child.title">
                     <nuxt-link
                       :to="child._path"
-                      :class="`${classes['dropdown-link']} ${
-                        child._path === $route.path
-                          ? classes['dropdown-link--active']
-                          : classes['navbar-link--inactive']
-                      }`"
+                      class="block py-2 pl-3 pr-4 lg:text-sm text-gray-700 rounded hover:bg-gray-100 lg:hover:bg-transparent lg:border-0 lg:hover:text-blue-700 lg:p-0 dark:text-gray-400 lg:dark:hover:text-white dark:hover:bg-gray-600 dark:hover:text-white lg:dark:hover:bg-transparent"
                       :aria-current="child._path === $route.path ? 'page' : undefined"
                     >
                       {{ child.title }}
@@ -149,8 +146,7 @@ export default {
               </div>
             </div>
           </li>
-
-          <li class="hidden lg:block">
+          <li class="hidden lg:block !px-0" :class="classes['navbar-link']">
             <theme-switcher />
           </li>
         </ul>

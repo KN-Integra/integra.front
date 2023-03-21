@@ -1,20 +1,23 @@
 <script lang="ts">
-import { SitemapXML } from '@/types/SitemapXML'
-
 // @ts-expect-error - TS doesn't know about CSS modules
 import style from './site-footer.module.css'
 
 export default {
   name: 'SiteFooter',
   layout: 'default',
-  data(): {
-    sitemap: {
-      loc: string
-      title: string
-    }[]
-  } {
+  async setup() {
+    const { data: navigation } = await useAsyncData('navigation', () => {
+      return fetchContentNavigation()
+    })
+
+    if (!navigation.value) return {}
+
+    const sitemap = navigation.value
+      .filter((u) => u.title && (u._path.match(/\//g) || []).length === 1 && u._path !== '/')
+      .filter((u) => !Number(u._path.replace('/', '')) && u._path !== '/teapot')
+
     return {
-      sitemap: []
+      sitemap
     }
   },
   computed: {
@@ -24,24 +27,6 @@ export default {
     year() {
       return new Date().getFullYear()
     }
-  },
-  async beforeCreate() {
-    if (!process.client) return
-
-    const {
-      urlset: { url }
-    } = await $fetch<SitemapXML>('/sitemap')
-
-    this.$data.sitemap = url
-      .map((u) => {
-        return {
-          // eslint-disable-next-line no-restricted-globals
-          loc: u.loc._text.replace(location.origin, ''),
-          title: u.title?._text || ''
-        }
-      })
-      .filter((u) => u.title && (u.loc.match(/\//g) || []).length === 1 && u.loc !== '/')
-      .filter((u) => !Number(u.loc.replace('/', '')) && u.loc !== '/teapot')
   }
 }
 </script>
@@ -53,8 +38,8 @@ export default {
         © {{ year }} <nuxt-link to="/" class="hover:underline">Integra</nuxt-link> - Wszelkie prawa zastrzeżone
       </span>
       <ul class="flex flex-wrap items-center mt-3 text-sm text-gray-500 dark:text-gray-400 sm:mt-0">
-        <li v-for="item in sitemap" :key="item.loc" class="mr-4 md:mr-6 last:m-0">
-          <nuxt-link :to="item.loc" class="hover:underline">{{ item.title }}</nuxt-link>
+        <li v-for="item in sitemap" :key="item._path" class="mr-4 md:mr-6 last:m-0">
+          <nuxt-link :to="item._path" class="hover:underline">{{ item.title }}</nuxt-link>
         </li>
       </ul>
     </div>

@@ -25,7 +25,9 @@ export default async function getSitemapStream(event: any) {
     sitemap.write({
       url: doc._path,
       title: doc.title,
-      changefreq: 'weekly'
+      changefreq: 'monthly',
+      lastmod: doc.lastmod,
+      priority: 0.5
     })
   })
 

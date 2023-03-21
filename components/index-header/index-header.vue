@@ -1,5 +1,5 @@
 <script lang="ts">
-import IndexNavigation from '@/components/index-page/index-navigation/index-navigation.vue'
+import IndexNavigation from '@/components/index-navigation/index-navigation.vue'
 
 // @ts-expect-error
 import style from './index-header.module.css'

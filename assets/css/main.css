@@ -8,3 +8,25 @@ a {
 body {
   @apply bg-white dark:bg-gray-900;
 }
+
+.content-page.page-enter-active main,
+.content-page.page-leave-active main {
+  transition: all 0.2s;
+}
+
+.content-page.page-enter-from main,
+.content-page.page-leave-to main {
+  opacity: 0;
+  filter: grayscale(1);
+}
+
+.index-page.page-enter-from,
+.index-page.page-leave-to {
+  opacity: 0;
+  filter: blur(1rem);
+}
+
+.index-page.page-enter-active,
+.index-page.page-leave-active {
+  transition: all 0.4s;
+}

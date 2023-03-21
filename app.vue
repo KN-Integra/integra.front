@@ -11,10 +11,8 @@ export default {
 
 <template>
   <div class="min-h-screen w-full overflow-y-auto overflow-x-none flex flex-col">
-    <NuxtLayout>
-      <NuxtPage />
+    <NuxtPage />
 
-      <site-footer />
-    </NuxtLayout>
+    <site-footer />
   </div>
 </template>

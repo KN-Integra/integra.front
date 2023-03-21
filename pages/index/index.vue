@@ -1,5 +1,5 @@
 <script lang="ts">
-import IndexHeader from '@/components/index-page/index-header/index-header.vue'
+import IndexHeader from '@/components/index-header/index-header.vue'
 
 export default {
   name: 'IndexPage',
@@ -10,13 +10,13 @@ export default {
 </script>
 
 <template>
-  <div>
+  <div class="index-page">
     <Head>
       <Title>Koło Naukowe Integra AGH</Title>
     </Head>
 
     <index-header />
 
-    <main class="prose container mx-auto px-4"></main>
+    <main class="container mx-auto px-4"></main>
   </div>
 </template>

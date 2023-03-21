@@ -7,7 +7,7 @@ interface ImageProp {
 }
 
 export default {
-  name: 'CarouselComponent',
+  name: 'ImageCarousel',
   props: {
     images: {
       type: Object as PropType<ImageProp[]>,

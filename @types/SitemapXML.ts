@@ -1,4 +1,4 @@
-export interface SitemapXML {
+export default interface SitemapXML {
   urlset: {
     url: {
       loc: {
@@ -14,6 +14,21 @@ export interface SitemapXML {
         _text: string
       }
       title?: {
+        _text: string
+      }
+      description?: {
+        _text: string
+      }
+      author?: {
+        _text: string
+      }
+      image?: {
+        _text: string
+      }
+      tags?: {
+        _text: string
+      }
+      createdAt?: {
         _text: string
       }
     }[]

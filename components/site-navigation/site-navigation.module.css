@@ -1,0 +1,35 @@
+.navbar {
+  @apply p-2 bg-white dark:bg-gray-900 border-b border-b-gray-200 dark:border-b-gray-700;
+}
+
+.navbar-toggle {
+  @apply inline-flex items-center p-2 ml-3 text-sm text-gray-500 rounded-lg lg:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600;
+}
+
+.navbar-button {
+  @apply flex items-center justify-start lg:justify-between w-full py-2 pl-3 pr-4 font-medium rounded lg:border-0 lg:px-4 lg:py-2 lg:w-auto;
+}
+
+.navbar-link {
+  @apply block py-2 pl-3 pr-4 rounded lg:border-0 lg:px-4 lg:py-2;
+}
+
+.navbar-link--inactive {
+  @apply text-gray-700 hover:bg-gray-100 lg:hover:bg-transparent lg:hover:text-blue-700 dark:text-gray-400 dark:hover:text-white dark:focus:text-white dark:border-gray-700 dark:hover:bg-gray-700 lg:dark:hover:bg-transparent;
+}
+
+.navbar-link--active {
+  @apply bg-blue-700 text-white dark:bg-blue-600;
+}
+
+.dropdown-link {
+  @apply block py-2 px-4 rounded lg:border-0;
+}
+
+.dropdown-link--active {
+  @apply bg-gray-200 dark:bg-gray-600 dark:text-white;
+}
+
+.dropdown-link--inactive {
+  @apply text-gray-700 dark:text-gray-400 hover:bg-gray-200/50 lg:hover:bg-transparent lg:hover:text-blue-700 lg:dark:hover:text-white dark:hover:bg-gray-600/50 dark:hover:text-white lg:dark:hover:bg-transparent;
+}

@@ -1,12 +1,10 @@
 <script lang="ts">
-import SiteNavigation from '@/components/site-navigation/site-navigation.vue'
 import EmptyDoc from '@/components/slots/empty-doc.vue'
 import NotFound from '@/components/slots/not-found.vue'
 
 export default {
   name: 'BlogSlug',
   components: {
-    SiteNavigation,
     EmptyDoc,
     NotFound
   }
@@ -14,12 +12,12 @@ export default {
 </script>
 
 <template>
-  <div>
+  <div class="content-page markdown-content">
     <header>
       <site-navigation />
     </header>
 
-    <main class="prose container mx-auto mt-8 px-4 flex flex-col gap-4 justify-center">
+    <main class="prose prose-sm md:prose-lg dark:prose-invert container mx-auto my-8 px-4 md:px-0">
       <content-doc>
         <template #not-found>
           <not-found />

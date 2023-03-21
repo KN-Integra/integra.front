@@ -103,6 +103,10 @@ export default defineNuxtConfig({
       name: 'page',
       mode: 'out-in'
     },
+    layoutTransition: {
+      name: 'slide',
+      mode: 'out-in'
+    },
     head: {
       title: APP_TITLE,
       meta: [
@@ -135,7 +139,7 @@ export default defineNuxtConfig({
     }
   },
 
-  css: ['@/assets/css/tailwind.css', '@/assets/css/main.css'],
+  css: ['@/assets/css/tailwind.css', '@/assets/css/main.css', '@/assets/css/markdown.css'],
   components: true,
 
   colorMode: {
@@ -144,6 +148,7 @@ export default defineNuxtConfig({
   },
 
   content: {
+    documentDriven: true,
     ignores: ['README.md', 'LICENSE.md', 'CHANGELOG.md', 'CONTRIBUTING.md', 'CODE_OF_CONDUCT.md', 'SECURITY.md'],
     sources: {
       content: {

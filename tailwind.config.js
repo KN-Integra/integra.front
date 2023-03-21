@@ -1,4 +1,4 @@
-// eslint-disable-next-line jsdoc/valid-types
+/* eslint-disable global-require, jsdoc/valid-types */
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: [
@@ -29,5 +29,5 @@ module.exports = {
       'home-title-dark': '0px 4px 4px rgba(255, 255, 255, 0.25)'
     }
   },
-  plugins: []
+  plugins: [require('@tailwindcss/typography')]
 }
