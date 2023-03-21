@@ -80,6 +80,7 @@ rules:
     - ignore:
       - '^@/*'
       - '#content/server'
+      - 'nuxt/*'
   import/prefer-default-export: 'off'
   import/no-deprecated: error
   import/named: error

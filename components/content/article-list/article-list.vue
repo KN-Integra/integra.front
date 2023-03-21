@@ -22,7 +22,6 @@ export default {
       .map(
         (u) =>
           ({
-            // eslint-disable-next-line no-restricted-globals
             _path: u.loc._text.replace(location.origin, ''),
             slug: u.loc._text.split('/').pop(),
             lastmod: u.lastmod._text,
