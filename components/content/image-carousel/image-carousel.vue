@@ -20,12 +20,27 @@ export default {
   methods: {
     setActiveIndex(index: number) {
       if (index < 0) {
-        this.activeIndex = this.images.length - 1
+        this.$data.activeIndex = this.images.length - 1
       } else if (index >= this.images.length) {
-        this.activeIndex = 0
+        this.$data.activeIndex = 0
       } else {
-        this.activeIndex = index
+        this.$data.activeIndex = index
       }
+    },
+    getImagePositionClass(index: number) {
+      if (index === this.$data.activeIndex) {
+        return 'translate-x-0'
+      }
+
+      if (index - this.$data.activeIndex === 1 || index === this.images.length - 1) {
+        return 'translate-x-full'
+      }
+
+      if (index - this.$data.activeIndex === -1 || index === 0) {
+        return '-translate-x-full'
+      }
+
+      return 'hidden'
     }
   }
 }
@@ -40,12 +55,12 @@ export default {
         v-for="(image, index) in images"
         :id="`image-${index}`"
         :key="image.alt"
-        class="duration-700 ease-in-out h-full"
-        :class="index === activeIndex ? 'block' : 'hidden'"
+        class="duration-700 ease-in-out absolute inset-y-0 -inset-x-[0.5px] transition-transform z-10"
+        :class="`${getImagePositionClass(index)}`"
         data-carousel-item
       >
         <img
-          class="absolute block w-full h-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2 object-scale-down"
+          class="absolute block w-full h-full !m-0 -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2 object-scale-down"
           :src="image.src"
           :alt="image.alt"
         />
@@ -56,7 +71,7 @@ export default {
       class="absolute z-30 flex space-x-3 -translate-x-1/2 bottom-5 left-1/2 bg-white/30 dark:bg-gray-800/30 px-3 py-2 rounded-md"
     >
       <button
-        v-for="(image, index) in images"
+        v-for="(_, index) in images"
         :id="`button-${index}`"
         :key="`button-${index}`"
         type="button"

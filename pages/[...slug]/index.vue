@@ -17,7 +17,7 @@ export default {
       <site-navigation />
     </header>
 
-    <main class="prose prose-sm md:prose-lg dark:prose-invert container mx-auto my-8 px-4 md:px-0">
+    <main class="prose prose-sm md:prose-lg dark:prose-invert container mx-auto my-8 px-4 lg:px-0">
       <content-doc>
         <template #not-found>
           <not-found />
