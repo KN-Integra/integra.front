@@ -148,6 +148,13 @@ export default defineNuxtConfig({
   ],
   components: true,
 
+  plugins: [
+    {
+      src: '~/plugins/vercel.ts',
+      mode: 'client'
+    }
+  ],
+
   colorMode: {
     preference: 'dark',
     fallback: 'dark'
