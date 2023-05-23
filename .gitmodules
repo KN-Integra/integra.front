@@ -1,6 +1,6 @@
 [submodule "content"]
 	path = content
 	url = https://github.com/iwo-strzebonski/integra.content.git
-[submodule "public/kreator-postaci"]
-	path = public/kreator-postaci
-	url = https://github.com/iwo-strzebonski/octoturges-npc-creator.git
+[submodule "public/hbm"]
+	path = public/hbm
+	url = https://github.com/iwo-strzebonski/octoturges-hbm-utils.git
