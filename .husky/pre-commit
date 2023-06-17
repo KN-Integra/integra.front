@@ -13,6 +13,13 @@ yarn lint:js ||
 
 echo '🏗️👷 Building your project before committing'
 
+ls -A content/content/ ||
+(
+  echo '❌ Content folder is empty! ❌ 
+    Run `yarn build` and try commit again.'
+  false; 
+)
+
 # Build project
 yarn build ||
 (
