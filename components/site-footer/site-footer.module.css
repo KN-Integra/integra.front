@@ -1,3 +1,3 @@
 .site-footer {
-  @apply mt-auto py-4;
+  @apply mt-auto py-4 bg-zinc-200 dark:bg-zinc-950;
 }
