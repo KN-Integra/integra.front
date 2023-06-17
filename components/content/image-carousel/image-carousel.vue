@@ -68,7 +68,7 @@ export default {
     </div>
     <!-- Slider indicators -->
     <div
-      class="absolute z-30 flex space-x-3 -translate-x-1/2 bottom-5 left-1/2 bg-white/30 dark:bg-gray-800/30 px-3 py-2 rounded-md"
+      class="absolute z-30 flex space-x-3 -translate-x-1/2 bottom-5 left-1/2 bg-white/30 dark:bg-zinc-800/30 px-3 py-2 rounded-md"
     >
       <button
         v-for="(_, index) in images"
@@ -78,7 +78,7 @@ export default {
         :class="
           index === activeIndex
             ? 'bg-black dark:bg-white border-black dark:border-white'
-            : 'bg-gray-500 border-gray-500 hover:bg-gray-600 dark:hover:bg-gray-400 hover:border-gray-600 dark:hover:border-gray-400'
+            : 'bg-zinc-500 border-zinc-500 hover:bg-zinc-600 dark:hover:bg-zinc-400 hover:border-zinc-600 dark:hover:border-zinc-400'
         "
         class="w-3 h-3 rounded-full border focus:outline-none backdrop-invert"
         aria-current="true"
@@ -95,7 +95,7 @@ export default {
       @click="setActiveIndex(activeIndex - 1)"
     >
       <span
-        class="inline-flex items-center justify-center w-8 h-8 rounded-full sm:w-10 sm:h-10 bg-white/30 dark:bg-gray-800/30 group-hover:bg-white/50 dark:group-hover:bg-gray-800/60 group-focus:ring-4 group-focus:ring-white dark:group-focus:ring-gray-800/70 group-focus:outline-none"
+        class="inline-flex items-center justify-center w-8 h-8 rounded-full sm:w-10 sm:h-10 bg-white/30 dark:bg-zinc-800/30 group-hover:bg-white/50 dark:group-hover:bg-zinc-800/60 group-focus:ring-4 group-focus:ring-white dark:group-focus:ring-zinc-800/70 group-focus:outline-none"
       >
         <lazy-client-only>
           <fa-icon icon="fa-solid fa-chevron-left" class="w-5 h-5 text-white sm:w-6 sm:h-6" />
@@ -110,7 +110,7 @@ export default {
       @click="setActiveIndex(activeIndex + 1)"
     >
       <span
-        class="inline-flex items-center justify-center w-8 h-8 rounded-full sm:w-10 sm:h-10 bg-white/30 dark:bg-gray-800/30 group-hover:bg-white/50 dark:group-hover:bg-gray-800/60 group-focus:ring-4 group-focus:ring-white dark:group-focus:ring-gray-800/70 group-focus:outline-none"
+        class="inline-flex items-center justify-center w-8 h-8 rounded-full sm:w-10 sm:h-10 bg-white/30 dark:bg-zinc-800/30 group-hover:bg-white/50 dark:group-hover:bg-zinc-800/60 group-focus:ring-4 group-focus:ring-white dark:group-focus:ring-zinc-800/70 group-focus:outline-none"
       >
         <lazy-client-only>
           <fa-icon icon="fa-solid fa-chevron-right" class="w-5 h-5 text-white sm:w-6 sm:h-6" />

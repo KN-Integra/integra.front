@@ -1,9 +1,11 @@
 <script lang="ts">
+import LargeFooter from '@/components/large-footer/large-footer.vue'
 import SiteFooter from '@/components/site-footer/site-footer.vue'
 
 export default {
   name: 'App',
   components: {
+    LargeFooter,
     SiteFooter
   }
 }
@@ -13,6 +15,7 @@ export default {
   <div class="min-h-screen w-full overflow-y-auto overflow-x-none flex flex-col">
     <NuxtPage />
 
+    <large-footer />
     <site-footer />
   </div>
 </template>

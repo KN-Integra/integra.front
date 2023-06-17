@@ -22,14 +22,14 @@ export default {
     <div class="container mx-auto w-full h-full flex flex-col items-center gap-8">
       <index-navigation />
 
-      <hr class="w-full h-px border-0 bg-gray-200 dark:bg-gray-600 hidden sm:block" />
+      <hr class="w-full h-px border-0 bg-zinc-200 dark:bg-zinc-600 hidden sm:block" />
 
       <div class="tracking-[0.25rem] text-center md:text-2xl lg:w-5/6 hidden sm:block">
         Koło Integra gromadzi ludzi z pasją, którzy poprzez realizację projektów rozwijają swoje zainteresowania.
         Integra to jest to!
       </div>
 
-      <hr class="w-full h-px border-0 bg-gray-200 dark:bg-gray-600 hidden sm:block" />
+      <hr class="w-full h-px border-0 bg-zinc-200 dark:bg-zinc-600 hidden sm:block" />
 
       <div class="text-center capitalize flex flex-col items-center gap-6 tracking-[0.25rem]">
         <span class="md:text-4xl">KOŁO NAUKOWE INTEGRA</span>

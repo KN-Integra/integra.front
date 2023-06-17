@@ -10,8 +10,8 @@
   @apply lg:p-0;
 
   /* Light mode */
-  @apply bg-blend-overlay bg-white/75 ;
+  @apply bg-blend-overlay bg-white/75;
 
   /* Dark mode */
-  @apply dark:bg-blend-multiply dark:bg-slate-800/75;
+  @apply dark:bg-blend-multiply dark:bg-zinc-800/75;
 }

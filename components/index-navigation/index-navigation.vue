@@ -130,13 +130,13 @@ export default {
               <div
                 :id="`dropdown-${site._path.slice(1)}`"
                 data-dropdown-menu
-                class="absolute hidden z-10 w-full mt-2 lg:mt-4 overflow-hidden bg-white rounded-lg shadow-lg lg:w-48 dark:bg-gray-700 lg:dark:text-white lg:dark:border-gray-700 lg:dark:shadow-none"
+                class="absolute hidden z-10 w-full mt-2 lg:mt-4 overflow-hidden bg-white rounded-lg shadow-lg lg:w-48 dark:bg-zinc-700 lg:dark:text-white lg:dark:border-zinc-700 lg:dark:shadow-none"
               >
                 <ul class="flex flex-col p-2 space-y-2">
                   <li v-for="child in site.children" :key="child.title">
                     <nuxt-link
                       :to="child._path"
-                      class="block py-2 pl-3 pr-4 lg:text-sm text-gray-700 rounded hover:bg-gray-100 lg:hover:bg-transparent lg:border-0 lg:hover:text-blue-700 lg:p-0 dark:text-gray-400 lg:dark:hover:text-white dark:hover:bg-gray-600 dark:hover:text-white lg:dark:hover:bg-transparent"
+                      class="block py-2 pl-3 pr-4 lg:text-sm text-zinc-700 rounded hover:bg-zinc-100 lg:hover:bg-transparent lg:border-0 lg:hover:text-blue-700 lg:p-0 dark:text-zinc-400 lg:dark:hover:text-white dark:hover:bg-zinc-600 dark:hover:text-white lg:dark:hover:bg-transparent"
                       :aria-current="child._path === $route.path ? 'page' : undefined"
                     >
                       {{ child.title }}
@@ -146,7 +146,7 @@ export default {
               </div>
             </div>
           </li>
-          <li class="hidden lg:block !px-0" :class="classes['navbar-link']">
+          <li class="!hidden lg:!block !px-0" :class="classes['navbar-link']">
             <theme-switcher />
           </li>
         </ul>

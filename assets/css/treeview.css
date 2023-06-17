@@ -3,7 +3,7 @@
 }
 
 .node-wrapper {
-  @apply rounded-sm cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-800;
+  @apply rounded-sm cursor-pointer hover:bg-zinc-100 dark:hover:bg-zinc-800;
 }
 
 .level-enter-to {
@@ -15,7 +15,7 @@
 }
 
 .node-wrapper:focus {
-  @apply bg-gray-200 dark:bg-gray-700;
+  @apply bg-zinc-200 dark:bg-zinc-700;
 }
 
 .icon-wrapper {

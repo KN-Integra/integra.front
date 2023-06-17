@@ -92,7 +92,7 @@ export default {
 
 <template>
   <div :class="classes['table-of-contents']">
-    <span class="text-sm text-gray-500">Spis treści</span>
+    <span class="text-sm text-zinc-500">Spis treści</span>
 
     <tree :nodes="nodes" :config="config" @node-focus="onNodeClick" />
   </div>

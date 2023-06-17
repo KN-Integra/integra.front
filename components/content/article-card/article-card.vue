@@ -28,20 +28,20 @@ export default {
       <img :src="article.image" :alt="article.title" />
     </div>
     <div>
-      <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
+      <h5 class="mb-2 text-2xl font-bold tracking-tight text-zinc-900 dark:text-white">
         {{ article.title }}
       </h5>
-      <span class="mb-4 text-sm font-light text-gray-700 dark:text-gray-400">
+      <span class="mb-4 text-sm font-light text-zinc-700 dark:text-zinc-400">
         {{ new Date(article.createdAt).toLocaleString() }} &middot; {{ article.author }}
       </span>
     </div>
-    <p class="font-normal text-gray-700 dark:text-gray-400">
+    <p class="font-normal text-zinc-700 dark:text-zinc-400">
       {{ article.description }}
     </p>
-    <div v-if="article.tags && article.tags.length" class="text-sm text-gray-700 dark:text-gray-400">
+    <div v-if="article.tags && article.tags.length" class="text-sm text-zinc-700 dark:text-zinc-400">
       Tagi: {{ article.tags.join(', ') }}
     </div>
-    <div class="text-xs font-light text-gray-700 dark:text-gray-400">
+    <div class="text-xs font-light text-zinc-700 dark:text-zinc-400">
       Ostatnia modyfikacja: {{ new Date(article.lastmod).toLocaleString() }}
     </div>
   </a>

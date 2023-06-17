@@ -29,7 +29,7 @@
     "@tailwindcss/typography": "^0.5.9",
     "@vercel/analytics": "^1.0.0",
     "eslint-plugin-jsdoc": "^40.0.3",
-    "nuxt": "3.0.0",
+    "nuxt": "3.1.0",
     "sitemap": "^7.1.1",
     "sweetalert2": "^11.6.15",
     "vue-mermaid-string": "^4.0.69",
@@ -39,6 +39,7 @@
   },
   "devDependencies": {
     "@babel/eslint-parser": "^7.19.1",
+    "@nuxt/image-edge": "^1.0.0-rc.1-28116474.c4a8ff6",
     "@nuxt/postcss8": "^1.1.3",
     "@nuxt/types": "^2.16.0",
     "@nuxt/typescript-build": "^2.1.0",

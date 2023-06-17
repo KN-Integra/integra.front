@@ -1,5 +1,5 @@
 .table-of-contents {
-  @apply border rounded-lg p-4;
-  @apply bg-gray-100 border-gray-200;
-  @apply dark:bg-gray-800 dark:border-gray-700;
+  @apply border rounded-lg p-4 shadow-md;
+  @apply bg-zinc-100 border-zinc-200;
+  @apply dark:bg-zinc-800 dark:border-zinc-700;
 }

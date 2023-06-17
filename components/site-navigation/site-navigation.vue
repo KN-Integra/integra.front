@@ -88,9 +88,7 @@ export default {
       </div>
 
       <div id="navbar-dropdown" class="w-full lg:block lg:w-auto" :class="navbarOpen ? 'block' : 'hidden'">
-        <ul
-          class="z-50 static md:absolute md:w-[calc(100%_-_1rem)] lg:w-full lg:static flex flex-col mt-4 lg:items-center rounded-lg border border-gray-100 bg-gray-50 p-2 gap-2 lg:flex-row lg:space-x-8 lg:mt-0 lg:text-sm lg:font-medium lg:border-0 lg:bg-white dark:bg-gray-800 lg:dark:bg-gray-900 dark:border-gray-700 lg:gap-0"
-        >
+        <ul :class="classes['navbar-ul']">
           <li v-for="site in sitemap" :key="site._path.slice(1)">
             <!-- TODO: Think about if we should show a list of article categories here -->
             <nuxt-link
@@ -129,7 +127,7 @@ export default {
               <div
                 :id="`dropdown-${site._path.slice(1)}`"
                 data-dropdown-menu
-                class="absolute hidden z-10 w-full mt-2 lg:mt-4 overflow-hidden bg-white rounded-lg shadow-lg lg:w-48 dark:bg-gray-700 lg:dark:text-white lg:dark:border-gray-700 lg:dark:shadow-none"
+                class="absolute hidden z-10 w-full mt-2 lg:mt-4 overflow-hidden bg-white rounded-lg shadow-lg lg:w-48 dark:bg-zinc-700 lg:dark:text-white lg:dark:border-zinc-700 lg:dark:shadow-none"
               >
                 <ul class="flex flex-col p-2 space-y-2">
                   <li v-for="child in site.children" :key="child.title">
