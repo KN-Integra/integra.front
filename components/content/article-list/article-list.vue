@@ -38,12 +38,12 @@ export default {
       urlset: { url }
     } = await $fetch('/sitemap')
 
-    const sitemap = url
-      .filter((u) => u.loc._text !== '/' && !Number(u.loc._text.replace('/', '')) && u.loc._text !== '/teapot')
+    const articles = url
+      .filter((u) => u.loc._text.includes('/blog/articles/'))
       .map(
         (u) =>
           ({
-            _path: u.loc._text.replace(location.origin, ''),
+            _path: u.loc._text.slice(u.loc._text.indexOf('/blog')),
             slug: u.loc._text.split('/').pop(),
             lastmod: u.lastmod._text as string,
             createdAt: u.createdAt?._text as string,
@@ -55,9 +55,6 @@ export default {
           } as Article)
       )
       .filter((u) => u.title && u.description && u.author && u.createdAt)
-
-    const articles = sitemap
-      .filter((u) => u._path.startsWith('/articles') && u._path !== '/articles')
       .sort((a, b) => {
         const dateA = new Date(a.createdAt)
         const dateB = new Date(b.createdAt)

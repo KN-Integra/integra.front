@@ -15,7 +15,9 @@ export default {
   <div class="min-h-screen w-full overflow-y-auto overflow-x-none flex flex-col">
     <NuxtPage />
 
-    <large-footer />
-    <site-footer />
+    <div class="mt-auto">
+      <large-footer />
+      <site-footer />
+    </div>
   </div>
 </template>

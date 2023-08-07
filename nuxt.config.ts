@@ -175,7 +175,9 @@ export default defineNuxtConfig({
   modules: [
     '@nuxt/content',
     '@nuxtjs/color-mode',
-    '@nuxt/image-edge'
+    '@nuxt/image-edge',
+    '@pinia/nuxt',
+    '@pinia-plugin-persistedstate/nuxt'
     // 'vue-sweetalert2/nuxt'
   ],
 
