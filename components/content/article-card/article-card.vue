@@ -1,5 +1,5 @@
 <script lang="ts">
-import { PropType } from 'nuxt/dist/app/compat/vue-demi'
+import { PropType } from 'nuxt/dist/app/compat/capi'
 
 import Article from '@/@types/Article'
 

@@ -12,9 +12,16 @@ export default {
 
     if (!navigation.value) return {}
 
-    const sitemap = navigation.value
-      .filter((u) => u.title && (u._path.match(/\//g) || []).length === 1 && u._path !== '/')
-      .filter((u) => !Number(u._path.replace('/', '')) && u._path !== '/teapot')
+    const nav = navigation.value[0].children
+
+    if (!(nav && nav.length)) return {}
+
+    const sitemap = nav
+      .filter((u) => isNaN(Number(u._path.split('/').at(-1))))
+      .map((u) => ({
+        ...u,
+        children: u.children ? u.children.filter((c) => c._path !== u._path) : undefined
+      }))
 
     return {
       sitemap
