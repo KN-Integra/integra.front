@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+
+<html lang="pl">
+<head>
+  <title>Hammerhead</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.4/flowbite.min.css" rel="stylesheet" />
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.4/flowbite.min.js"></script>
+  <script src="https://kit.fontawesome.com/8db9837635.js" crossorigin="anonymous"></script>
+
+  <style>
+    input[type=range][orient=vertical] {
+      appearance: slider-vertical;
+    }
+  </style>
+
+  <script>
+    function getRandomIntInclusive(min, max) {
+      min = Math.ceil(min);
+      max = Math.floor(max);
+      return Math.floor(Math.random() * (max - min + 1) + min); // The maximum is inclusive and the minimum is inclusive
+    }
+
+    function getColor(value) {
+      const hue = ((1 - value) * 120).toString(10);
+
+      return ["hsl(", hue, ",100%,50%)"].join("");
+    }
+
+    function updateSensors() {
+      const sensors = document.querySelectorAll("#sensors > div");
+      const batteryLevel = document.querySelector("#battery-level");
+
+      sensors.forEach((sensor) => {
+        sensor.style.background = "#FFF";
+      })
+
+      if (parseInt(batteryLevel.innerText.replace("%", "")) <= 0) {
+        return;
+      }
+
+      const selectedSensor = getRandomIntInclusive(0, 7);
+
+      sensors[selectedSensor].style.background = "#000";
+    }
+
+    function updateBattery() {
+      const batteryLevel = document.querySelector("#battery-level");
+      const oldLevel = parseInt(batteryLevel.innerText.replace("%", ""));
+      const newLevel = oldLevel > 0 ? oldLevel - 1 : 0;
+
+      batteryLevel.innerText = `${newLevel}%`;
+
+      batteryLevel.style.background = getColor((100 - newLevel) / 100)
+
+      console.debug("Updating battery level")
+    }
+
+    setInterval(updateSensors, 500);
+    setInterval(updateBattery, 1000);
+  </script>
+</head>
+
+<body class="w-full p-0 flex flex-col justify-start items-center pb-24">
+  <h1 class="text-4xl mt-4 font-bold text-center w-full">Line Follower Hammerhead</h1>
+
+  <div class="max-w-screen h-[calc(100vh-6rem)] relative">
+    <img src="img/hammerhead.svg" alt="Hammerhead" class="max-w-screen h-[calc(100vh-6rem)] object-contain">
+
+    <span id="sensors" class="absolute top-14 left-0 w-full inline-flex gap-x-2 justify-between px-8">
+      <div id="sensor-0" class="top-0 left-0 w-8 h-8 border-4 border-solid border-green-500" style="background: #000"></div>
+      <div id="sensor-1" class="top-0 left-0 w-8 h-8 border-4 border-solid border-green-500" style="background: #FFF"></div>
+      <div id="sensor-2" class="top-0 left-0 w-8 h-8 border-4 border-solid border-green-500" style="background: #FFF"></div>
+      <div id="sensor-3" class="top-0 left-0 w-8 h-8 border-4 border-solid border-green-500" style="background: #FFF"></div>
+      <div id="sensor-4" class="top-0 left-0 w-8 h-8 border-4 border-solid border-green-500" style="background: #FFF"></div>
+      <div id="sensor-5" class="top-0 left-0 w-8 h-8 border-4 border-solid border-green-500" style="background: #FFF"></div>
+      <div id="sensor-6" class="top-0 left-0 w-8 h-8 border-4 border-solid border-green-500" style="background: #FFF"></div>
+      <div id="sensor-7" class="top-0 left-0 w-8 h-8 border-4 border-solid border-green-500" style="background: #FFF"></div>
+    </span>
+
+    <div id="battery" class="absolute w-16 h-[100px] border-4 border-solid border-blue-500 top-[calc(50%-30px)] left-[calc(50%-32px)]">
+      <div id="battery-level" class="w-full h-full inline-flex items-center justify-center" style="background: rgb(0, 255, 0);">100%</div>
+    </div>
+  </div>
+
+  <div id="controls" class="w-full inline-flex justify-between">
+    <div id="steering" class="relative w-1/2 ml-4">
+      <button class="absolute bg-zinc-500 hover:bg-zinc-400 text-white rounded-md left-16 top-0 w-12 h-12 inline-flex justify-center items-center">&#8963;</button>
+      <button class="absolute bg-zinc-500 hover:bg-zinc-400 text-white rounded-md left-0 top-16 w-12 h-12 inline-flex justify-center items-center">&#8249;</button>
+      <button class="absolute bg-zinc-500 hover:bg-zinc-400 text-white rounded-md left-32 top-16 w-12 h-12 inline-flex justify-center items-center">&#8250;</button>
+      <button class="absolute bg-zinc-500 hover:bg-zinc-400 text-white rounded-md left-16 top-32 w-12 h-12 inline-flex justify-center items-center">&#8964;</button>
+    </div>
+
+    <input id="power" type="range" orient="vertical" min="0" max="100" />
+  </div>
+</body>
+</html>

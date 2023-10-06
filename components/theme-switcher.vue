@@ -32,6 +32,7 @@ export default {
     <lazy-client-only>
       <fa-icon icon="fa-solid fa-moon" class="h-4 w-4" />
       <fa-icon icon="fa-regular fa-sun" class="h-4 w-4" />
+
       <div
         class="absolute rounded-xl h-5 w-5 top-0.5 left-0.5 dark:left-[calc(100%_-_22px)] duration-300 ease-in-out bg-black dark:bg-white"
       ></div>
