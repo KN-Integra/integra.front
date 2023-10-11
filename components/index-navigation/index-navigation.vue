@@ -117,19 +117,20 @@ export default {
               :data-dropdown-toggle="`dropdown-${site._path.slice(1)}`"
               @blur="toggleSidebar"
             >
-              <button
+              <nuxt-link
                 :id="`dropdown-button-${site._path.slice(1)}`"
-                type="button"
                 :data-dropdown-toggle="`dropdown-${site._path.slice(1)}`"
                 class="!flex items-center justify-start"
                 :class="classes['navbar-link']"
+                :to="site._path"
                 @click="toggleSidebar"
               >
                 {{ site.title }}
                 <lazy-client-only>
                   <fa-icon icon="fa-solid fa-chevron-down" class="ml-2 h-3 w-3" />
                 </lazy-client-only>
-              </button>
+              </nuxt-link>
+
               <div
                 :id="`dropdown-${site._path.slice(1)}`"
                 data-dropdown-menu
