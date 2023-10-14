@@ -1,6 +1,4 @@
 <script lang="ts">
-import { PropType } from 'nuxt/dist/app/compat/capi'
-
 interface ImageProp {
   src: string
   alt: string

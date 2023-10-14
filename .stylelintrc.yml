@@ -1,18 +1,17 @@
 extends:
-- stylelint-config-standard
+  - stylelint-config-standard
 plugins:
   - stylelint-prettier
 overrides:
-- files:
-  - "*.jsx"
-  - "*.tsx"
-  customSyntax: postcss-lit
+  - files:
+    - '*.vue'
+    customSyntax: postcss-lit
 rules:
   at-rule-no-unknown:
-  - true
-  - ignoreAtRules:
-    - tailwind
-    - apply
-    - variants
-    - responsive
-    - screen
+    - true
+    - ignoreAtRules:
+      - tailwind
+      - apply
+      - variants
+      - responsive
+      - screen
