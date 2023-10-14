@@ -13,7 +13,7 @@
 
 .navbar-dropdown.hide {
   /* Animation */
-  @apply opacity-0 lg:opacity-100 -z-10;
+  @apply opacity-0 lg:opacity-100 -z-10 lg:z-0;
 }
 
 .links-ul {

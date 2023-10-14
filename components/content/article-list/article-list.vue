@@ -3,7 +3,6 @@ import Article from '@/@types/Article'
 import ArticleCard from '@/components/content/article-card/article-card.vue'
 import PaginationComponent from '@/components/pagination-component/pagination-component.vue'
 
-// @ts-expect-error - TS doesn't know about CSS modules
 import style from './article-list.module.css'
 
 export default {
@@ -11,6 +10,13 @@ export default {
   components: {
     ArticleCard,
     pagination: PaginationComponent
+  },
+  props: {
+    parent: {
+      type: String,
+      required: false,
+      default: ''
+    }
   },
   data() {
     return {
@@ -38,8 +44,8 @@ export default {
       urlset: { url }
     } = await $fetch('/sitemap')
 
-    const sitemap = url
-      .filter((u) => u.loc._text !== '/' && !Number(u.loc._text.replace('/', '')) && u.loc._text !== '/teapot')
+    const articles = url
+      .filter((u) => u.loc._text.includes(`/blog/articles${this.parent && `/${this.parent}/`}`))
       .map(
         (u) =>
           ({
@@ -55,9 +61,6 @@ export default {
           } as Article)
       )
       .filter((u) => u.title && u.description && u.author && u.createdAt)
-
-    const articles = sitemap
-      .filter((u) => u._path.startsWith('/articles') && u._path !== '/articles')
       .sort((a, b) => {
         const dateA = new Date(a.createdAt)
         const dateB = new Date(b.createdAt)

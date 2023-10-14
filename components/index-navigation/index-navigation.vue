@@ -2,7 +2,6 @@
 import ThemeSwitcher from '@/components/theme-switcher.vue'
 import { APP_TITLE } from '@/settings/constants'
 
-// @ts-expect-error - TS doesn't know about CSS modules
 import style from './index-navigation.module.css'
 
 interface SiteNavData {
@@ -117,19 +116,20 @@ export default {
               :data-dropdown-toggle="`dropdown-${site._path.slice(1)}`"
               @blur="toggleSidebar"
             >
-              <nuxt-link
+              <button
                 :id="`dropdown-button-${site._path.slice(1)}`"
+                type="button"
                 :data-dropdown-toggle="`dropdown-${site._path.slice(1)}`"
                 class="!flex items-center justify-start"
                 :class="classes['navbar-link']"
-                :to="site._path"
                 @click="toggleSidebar"
               >
                 {{ site.title }}
+
                 <lazy-client-only>
                   <fa-icon icon="fa-solid fa-chevron-down" class="ml-2 h-3 w-3" />
                 </lazy-client-only>
-              </nuxt-link>
+              </button>
 
               <div
                 :id="`dropdown-${site._path.slice(1)}`"
@@ -137,6 +137,16 @@ export default {
                 class="absolute hidden z-10 w-full mt-2 lg:mt-4 overflow-hidden bg-white rounded-lg shadow-lg lg:w-48 dark:bg-zinc-700 lg:dark:text-white lg:dark:border-zinc-700 lg:dark:shadow-none"
               >
                 <ul class="flex flex-col p-2 space-y-2">
+                  <li>
+                    <nuxt-link
+                      :to="site._path"
+                      class="block py-2 pl-3 pr-4 lg:text-sm text-zinc-700 rounded hover:bg-zinc-100 lg:hover:bg-transparent lg:border-0 lg:hover:text-blue-700 lg:p-0 dark:text-zinc-400 lg:dark:hover:text-white dark:hover:bg-zinc-600 dark:hover:text-white lg:dark:hover:bg-transparent"
+                      :aria-current="site._path === $route.path ? 'page' : undefined"
+                    >
+                      {{ site.title }}
+                    </nuxt-link>
+                  </li>
+
                   <li v-for="child in site.children" :key="child.title">
                     <nuxt-link
                       :to="child._path"
