@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import type { Article } from '@/types'
-
 import style from './article-card.module.css'
+
+import type { Article } from '@/types'
 
 const $props = defineProps({
   article: {
