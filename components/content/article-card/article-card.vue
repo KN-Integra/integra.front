@@ -1,9 +1,6 @@
 <script lang="ts">
-import { PropType } from 'nuxt/dist/app/compat/capi'
-
 import Article from '@/@types/Article'
 
-// @ts-expect-error - TS doesn't know about CSS modules
 import style from './article-card.module.css'
 
 export default {
