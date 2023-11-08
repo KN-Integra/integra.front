@@ -1,81 +1,81 @@
-<script lang="ts">
-import Article from '@/@types/Article'
-import ArticleCard from '@/components/content/article-card/article-card.vue'
-import PaginationComponent from '@/components/pagination-component/pagination-component.vue'
-
+<script setup lang="ts">
 import style from './article-list.module.css'
 
-export default {
-  name: 'ArticleList',
-  components: {
-    ArticleCard,
-    pagination: PaginationComponent
-  },
-  props: {
-    parent: {
-      type: String,
-      required: false,
-      default: ''
-    }
-  },
-  data() {
-    return {
-      articles: [] as Article[],
-      currentPage: 1
-    }
-  },
-  computed: {
-    classes() {
-      return style
-    },
-    paginatedArticles() {
-      if (!this.articles) return []
+import type { Article } from '@/types'
 
-      return this.articles.slice((this.currentPage - 1) * 4, this.currentPage * 4)
-    },
-    totalPages() {
-      if (!this.articles) return 0
-
-      return Math.ceil(this.articles.length / 4)
-    }
-  },
-  async mounted() {
-    const {
-      urlset: { url }
-    } = await $fetch('/sitemap')
-
-    const articles = url
-      .filter((u) => u.loc._text.includes(`/blog/articles${this.parent && `/${this.parent}/`}`))
-      .map(
-        (u) =>
-          ({
-            _path: u.loc._text.replace(location.origin, ''),
-            slug: u.loc._text.split('/').pop(),
-            lastmod: u.lastmod._text as string,
-            createdAt: u.createdAt?._text as string,
-            title: u.title?._text as string,
-            description: u.description?._text as string,
-            author: u.author?._text as string,
-            image: u.image?._text,
-            tags: u.tags?._text.split(', ')
-          } as Article)
-      )
-      .filter((u) => u.title && u.description && u.author && u.createdAt)
-      .sort((a, b) => {
-        const dateA = new Date(a.createdAt)
-        const dateB = new Date(b.createdAt)
-
-        return dateB.getTime() - dateA.getTime()
-      })
-
-    this.articles = articles
-  },
-  methods: {
-    onPageChange(pageNo: number) {
-      this.currentPage = pageNo
-    }
+const $props = defineProps({
+  parent: {
+    type: String,
+    required: false,
+    default: ''
   }
+})
+
+const currentPage = ref(1)
+
+const { data: articles, error } = useLazyAsyncData<Article[]>(async () => {
+  const {
+    urlset: { url }
+  } = await $fetch('/sitemap')
+
+  // const v = await fetchContentNavigation()
+
+  // console.debug('value', v)
+
+  const arts = url
+    .filter((u) => u.loc._text.includes(`/blog/articles${$props.parent && `/${$props.parent}/`}`))
+    .map(
+      (u) =>
+        ({
+          _path: u.loc._text.replace(location.origin, ''),
+          slug: u.loc._text.split('/').pop(),
+          lastmod: u.lastmod._text as string,
+          createdAt: u.createdAt?._text as string,
+          title: u.title?._text as string,
+          description: u.description?._text as string,
+          author: u.author?._text as string,
+          image: u.image?._text,
+          tags: u.tags?._text.split(', ')
+        } as Article)
+    )
+    .filter((u) => u.title && u.description && u.author && u.createdAt)
+    .sort((a, b) => {
+      const dateA = new Date(a.createdAt)
+      const dateB = new Date(b.createdAt)
+
+      return dateB.getTime() - dateA.getTime()
+    })
+
+  return arts
+})
+
+const classes = computed(() => style)
+
+const paginatedArticles = computed(() => {
+  if (!articles.value) return []
+
+  return articles.value.slice((currentPage.value - 1) * 4, currentPage.value * 4)
+})
+
+const totalPages = computed(() => {
+  if (!articles.value) return 0
+
+  return Math.ceil(articles.value.length / 4)
+})
+
+/**
+ * @description Change current page
+ * @param {number} pageNo - Page number
+ */
+function onPageChange(pageNo: number) {
+  currentPage.value = pageNo
 }
+
+watch(error, (err) => {
+  if (err) {
+    alert('Wystąpił błąd podczas pobierania artykułów. Spróbuj ponownie później.')
+  }
+})
 </script>
 
 <template>
@@ -84,6 +84,6 @@ export default {
       <article-card v-for="article in paginatedArticles" :id="article.slug" :key="article._path" :article="article" />
     </div>
 
-    <pagination :current-page="currentPage" :total-pages="totalPages" @page-change="onPageChange" />
+    <pagination-component :current-page="currentPage" :total-pages="totalPages" @page-change="onPageChange($event)" />
   </div>
 </template>

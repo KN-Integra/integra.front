@@ -140,6 +140,7 @@ export default defineNuxtConfig({
   },
 
   css: [
+    '@/assets/css/content.css',
     '@/assets/css/tailwind.css',
     '@/assets/css/main.css',
     '@/assets/css/markdown.css',
@@ -147,13 +148,6 @@ export default defineNuxtConfig({
     'vue3-treeview/dist/style.css'
   ],
   components: true,
-
-  plugins: [
-    {
-      src: '~/plugins/vercel.ts',
-      mode: 'client'
-    }
-  ],
 
   colorMode: {
     preference: 'dark',
