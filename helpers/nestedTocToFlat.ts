@@ -1,4 +1,4 @@
-import { ToCNode, ToCFlatNode } from '@/@types/ToCNode'
+import type { ToCNode, ToCFlatNode } from '@/types'
 
 /**
  * Flattens a tree of nodes into an array of nodes with children as ids

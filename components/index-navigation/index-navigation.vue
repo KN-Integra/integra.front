@@ -136,7 +136,7 @@ export default {
                 data-dropdown-menu
                 class="absolute hidden z-10 w-full mt-2 lg:mt-4 overflow-hidden bg-white rounded-lg shadow-lg lg:w-48 dark:bg-zinc-700 lg:dark:text-white lg:dark:border-zinc-700 lg:dark:shadow-none"
               >
-                <ul class="flex flex-col p-2 space-y-2">
+                <ul class="flex flex-col p-2 space-y-2 max-h-80 overflow-y-auto">
                   <li>
                     <nuxt-link
                       :to="site._path"

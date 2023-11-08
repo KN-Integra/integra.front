@@ -1,45 +1,44 @@
-<script lang="ts">
-import Article from '@/@types/Article'
+<script setup lang="ts">
+import type { Article } from '@/types'
 
 import style from './article-card.module.css'
 
-export default {
-  name: 'ArticleCard',
-  props: {
-    article: {
-      type: Object as PropType<Article>,
-      required: true
-    }
-  },
-  computed: {
-    classes() {
-      return style
-    }
+const $props = defineProps({
+  article: {
+    type: Object as PropType<Article>,
+    required: true
   }
-}
+})
+
+const classes = computed(() => style)
 </script>
 
 <template>
-  <a :id="article.slug" :href="article._path" :class="classes['article-card']">
-    <div v-if="article.image" class="article-card__image">
-      <img :src="article.image" :alt="article.title" />
+  <nuxt-link :id="$props.article.slug" :to="$props.article._path" :class="classes['article-card']">
+    <div v-if="$props.article.image" class="article-card__image">
+      <img :src="$props.article.image" :alt="$props.article.title" />
     </div>
+
     <div>
       <h5 class="mb-2 text-2xl font-bold tracking-tight text-zinc-900 dark:text-white">
-        {{ article.title }}
+        {{ $props.article.title }}
       </h5>
+
       <span class="mb-4 text-sm font-light text-zinc-700 dark:text-zinc-400">
-        {{ new Date(article.createdAt).toLocaleString() }} &middot; {{ article.author }}
+        {{ new Date($props.article.createdAt).toLocaleString() }} &middot; {{ $props.article.author }}
       </span>
     </div>
+
     <p class="font-normal text-zinc-700 dark:text-zinc-400">
-      {{ article.description }}
+      {{ $props.article.description }}
     </p>
-    <div v-if="article.tags && article.tags.length" class="text-sm text-zinc-700 dark:text-zinc-400">
-      Tagi: {{ article.tags.join(', ') }}
+
+    <div v-if="$props.article.tags && $props.article.tags.length" class="text-sm text-zinc-700 dark:text-zinc-400">
+      Tagi: {{ $props.article.tags.join(', ') }}
     </div>
+
     <div class="text-xs font-light text-zinc-700 dark:text-zinc-400">
-      Ostatnia modyfikacja: {{ new Date(article.lastmod).toLocaleString() }}
+      Ostatnia modyfikacja: {{ new Date($props.article.lastmod).toLocaleString() }}
     </div>
-  </a>
+  </nuxt-link>
 </template>
