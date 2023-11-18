@@ -1,46 +1,50 @@
-<script lang="ts">
-interface ImageProp {
-  src: string
-  alt: string
+<script setup lang="ts">
+import type ImageProp from '~/types/ImageProp'
+
+const $props = defineProps({
+  images: {
+    type: Object as PropType<ImageProp[]>,
+    required: true
+  }
+})
+
+const activeIndex = ref(0)
+
+/**
+ * Set the active index of the carousel.
+ *
+ * @param {number} index - The index to set.
+ */
+function setActiveIndex(index: number): void {
+  if (index < 0) {
+    activeIndex.value = $props.images.length - 1
+  } else if (index >= $props.images.length) {
+    activeIndex.value = 0
+  } else {
+    activeIndex.value = index
+  }
 }
 
-export default {
-  name: 'ImageCarousel',
-  props: {
-    images: {
-      type: Object as PropType<ImageProp[]>,
-      required: true
-    }
-  },
-  data: () => ({
-    activeIndex: 0
-  }),
-  methods: {
-    setActiveIndex(index: number) {
-      if (index < 0) {
-        this.$data.activeIndex = this.images.length - 1
-      } else if (index >= this.images.length) {
-        this.$data.activeIndex = 0
-      } else {
-        this.$data.activeIndex = index
-      }
-    },
-    getImagePositionClass(index: number) {
-      if (index === this.$data.activeIndex) {
-        return 'translate-x-0'
-      }
-
-      if (index - this.$data.activeIndex === 1 || index === this.images.length - 1) {
-        return 'translate-x-full'
-      }
-
-      if (index - this.$data.activeIndex === -1 || index === 0) {
-        return '-translate-x-full'
-      }
-
-      return 'hidden'
-    }
+/**
+ * Get the position class of the image.
+ *
+ * @param {number} index - The index of the image.
+ * @returns {string} The position class.
+ */
+function getImagePositionClass(index: number): string {
+  if (index === activeIndex.value) {
+    return 'translate-x-0'
   }
+
+  if (index - activeIndex.value === 1 || index === $props.images.length - 1) {
+    return 'translate-x-full'
+  }
+
+  if (index - activeIndex.value === -1 || index === 0) {
+    return '-translate-x-full'
+  }
+
+  return 'hidden'
 }
 </script>
 
@@ -50,23 +54,24 @@ export default {
     <div class="relative h-56 overflow-hidden rounded-lg md:h-96">
       <!-- Items -->
       <div
-        v-for="(image, index) in images"
+        v-for="(image, index) in $props.images"
         :id="`image-${index}`"
         :key="image.alt"
         class="duration-700 ease-in-out absolute inset-y-0 -inset-x-[0.5px] transition-transform z-10"
         :class="`${getImagePositionClass(index)}`"
         data-carousel-item
       >
-        <img
+        <nuxt-img
           class="absolute block w-full h-full !m-0 -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2 object-scale-down"
           :src="image.src"
           :alt="image.alt"
         />
       </div>
     </div>
+
     <!-- Slider indicators -->
     <div
-      class="absolute z-30 flex space-x-3 -translate-x-1/2 bottom-5 left-1/2 bg-white/30 dark:bg-zinc-800/30 px-3 py-2 rounded-md"
+      class="absolute z-10 flex space-x-3 -translate-x-1/2 bottom-5 left-1/2 bg-white/30 dark:bg-zinc-800/30 px-3 py-2 rounded-md"
     >
       <button
         v-for="(_, index) in images"
@@ -88,7 +93,7 @@ export default {
     <!-- Slider controls -->
     <button
       type="button"
-      class="absolute top-0 left-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none"
+      class="absolute top-0 left-0 z-10 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none"
       data-carousel-prev
       @click="setActiveIndex(activeIndex - 1)"
     >
@@ -101,9 +106,10 @@ export default {
         <span class="sr-only">Previous</span>
       </span>
     </button>
+
     <button
       type="button"
-      class="absolute top-0 right-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none"
+      class="absolute top-0 right-0 z-10 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none"
       data-carousel-next
       @click="setActiveIndex(activeIndex + 1)"
     >

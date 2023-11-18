@@ -166,13 +166,29 @@ export default defineNuxtConfig({
     }
   },
 
+  pwa: {
+    devOptions: { enabled: true },
+    registerType: 'autoUpdate',
+    manifest: {
+      name: 'D',
+      short_name: 'D',
+      theme_color: '#ffffff',
+      icons: icons.map((icon) => ({
+        ...icon,
+        src: icon.href
+      }))
+    }
+  },
+
   modules: [
     '@nuxt/content',
     '@nuxtjs/color-mode',
     '@nuxt/image-edge',
     '@pinia/nuxt',
-    '@pinia-plugin-persistedstate/nuxt'
     // 'vue-sweetalert2/nuxt'
+    '@pinia-plugin-persistedstate/nuxt',
+    '@nuxt/image',
+    '@vite-pwa/nuxt'
   ],
 
   build: {

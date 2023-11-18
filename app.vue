@@ -1,18 +1,18 @@
-<script lang="ts">
-import LargeFooter from '@/components/large-footer/large-footer.vue'
-import SiteFooter from '@/components/site-footer/site-footer.vue'
+<script setup lang="ts">
+const { $pwa } = useNuxtApp()
 
-export default {
-  name: 'App',
-  components: {
-    LargeFooter,
-    SiteFooter
+onMounted(() => {
+  if ($pwa?.offlineReady) {
+    alert('App ready to work offline')
   }
-}
+
+  // $pwa.update()
+})
 </script>
 
 <template>
   <div class="min-h-screen w-full overflow-y-auto overflow-x-none flex flex-col">
+    <VitePwaManifest />
     <NuxtPage />
 
     <large-footer />

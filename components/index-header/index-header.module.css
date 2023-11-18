@@ -1,7 +1,6 @@
 .index-header {
   /* Layout */
   @apply relative flex flex-col items-center justify-evenly bg-cover;
-
   @apply md:min-h-screen;
   @apply bg-header-mobile lg:bg-header-desktop;
 
