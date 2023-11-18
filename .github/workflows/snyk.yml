@@ -1,3 +1,5 @@
+name: Snyk Security
+
 on:
   # Allows you to run this workflow manually from the Actions tab or through HTTP API
   schedule:
@@ -5,21 +7,10 @@ on:
   workflow_dispatch:
 
 jobs:
-  sync:
-    name: 'Submodules Sync'
-    runs-on: ubuntu-latest
+  security:
+      name: Snyk Security
+      runs-on: ubuntu-latest
 
-    defaults:
-      run:
-        shell: bash
-
-    steps:
-    - name: Checkout
-      uses: actions/checkout@v3
-      with:
-        token: ${{ secrets.CI_TOKEN }}
-        submodules: true
-        fetch-depth: 0
-
-    - name: Snyk Security
-      uses: snyk/actions@0.4.0
+      steps:
+        - name: Snyk
+          uses: snyk/actions@0.4.0
