@@ -1,9 +1,6 @@
-name: Snyk Security
+name: Preview Deployment
 
 on:
-  # Allows you to run this workflow manually from the Actions tab or through HTTP API
-  schedule:
-    - cron: '0 0 * * MON'
   workflow_dispatch:
 
 jobs:
