@@ -8,9 +8,14 @@ on:
 
 jobs:
   security:
-      name: Snyk Security
-      runs-on: ubuntu-latest
+    name: Snyk Security
+    runs-on: ubuntu-latest
 
-      steps:
-        - name: Snyk
-          uses: snyk/actions@0.4.0
+    steps:
+      - uses: actions/checkout@v3
+      - name: Snyk
+        uses: snyk/actions@0.4.0
+        env:
+          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+        with:
+          command: monitor
