@@ -1,6 +1,6 @@
 import type { Generated, Insertable, Selectable, Updateable } from 'kysely'
 
-export default interface AccessTokenTable {
+export default interface AccessTokensTable {
   id: Generated<string>
 
   user_id: string
@@ -9,6 +9,6 @@ export default interface AccessTokenTable {
   created_at: Generated<Date>
 }
 
-export type AccessTokenRow = Selectable<AccessTokenTable>
-export type InsertableAccessTokenRow = Insertable<AccessTokenTable>
-export type UpdateableAccessTokenRow = Updateable<AccessTokenTable>
+export type AccessTokenRow = Selectable<AccessTokensTable>
+export type InsertableAccessTokenRow = Insertable<AccessTokensTable>
+export type UpdateableAccessTokenRow = Updateable<AccessTokensTable>
