@@ -36,7 +36,7 @@ const { data: articles, error } = useLazyAsyncData<Article[]>(async () => {
           author: u.author?._text as string,
           image: u.image?._text,
           tags: u.tags?._text.split(', ')
-        } as Article)
+        }) as Article
     )
     .filter((u) => u.title && u.description && u.author && u.createdAt)
     .sort((a, b) => {
