@@ -1,4 +1,4 @@
-<script lang="ts">
+<script setup lang="ts">
 import ThemeSwitcher from '@/components/theme-switcher.vue'
 import { useUserStore } from '@/store/user.store'
 
@@ -19,56 +19,50 @@ definePageMeta({
   ]
 })
 
-export default {
-  name: 'DianaLoginPage',
-  components: {
-    ThemeSwitcher
-  },
-  setup() {
-    const userStore = useUserStore()
+const $route = useRoute()
+const userStore = useUserStore()
 
-    return {
-      userStore
-    }
-  },
-  data: () => {
-    return {
-      showPassword: false
-    }
-  },
-  methods: {
-    togglePasswordVisibility() {
-      this.showPassword = !this.showPassword
-    },
-    async login(event: Event) {
-      const target = event.target as HTMLFormElement
-      const formData = new FormData(target)
-      const [email, password] = [formData.get('email'), formData.get('password')] as [string, string]
+const showPassword = ref(false)
 
-      try {
-        await this.userStore.login(email, password)
+/**
+ * @description Navigate to given path
+ */
+function togglePasswordVisibility() {
+  showPassword.value = !showPassword.value
+}
 
-        alert('Zalogowano pomyślnie')
+/**
+ * @description Navigate to given path
+ * @param {Event} event - Form submit Event
+ */
+async function login(event: Event) {
+  const target = event.target as HTMLFormElement
 
-        // await this.$swal.fire({
-        //   icon: 'success',
-        //   title: 'Zalogowano pomyślnie',
-        //   showConfirmButton: false,
-        //   timer: 1500
-        // })
+  const formData = new FormData(target)
+  const [email, password] = [formData.get('email'), formData.get('password')] as [string, string]
 
-        navigateTo((this.$route.query.redirect as string | undefined) || '/diana')
-      } catch (e) {
-        alert((e as Response).status === 401 ? 'Nieprawidłowe dane logowania' : 'Błąd serwera')
+  try {
+    await userStore.login(email, password)
 
-        // await this.$swal.fire({
-        //   icon: 'error',
-        //   title: (e as Response).status === 401 ? 'Nieprawidłowe dane logowania' : 'Błąd serwera',
-        //   showConfirmButton: false,
-        //   timer: 1500
-        // })
-      }
-    }
+    alert('Zalogowano pomyślnie')
+
+    // await this.$swal.fire({
+    //   icon: 'success',
+    //   title: 'Zalogowano pomyślnie',
+    //   showConfirmButton: false,
+    //   timer: 1500
+    // })
+
+    navigateTo(($route.query.redirect as string | undefined) || '/diana')
+  } catch (e) {
+    alert((e as Response).status === 401 ? 'Nieprawidłowe dane logowania' : 'Błąd serwera')
+
+    // await this.$swal.fire({
+    //   icon: 'error',
+    //   title: (e as Response).status === 401 ? 'Nieprawidłowe dane logowania' : 'Błąd serwera',
+    //   showConfirmButton: false,
+    //   timer: 1500
+    // })
   }
 }
 </script>

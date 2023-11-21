@@ -8,7 +8,7 @@ export enum GenderEnum {
 
 export type GenderType = typeof GenderEnum
 
-export default interface UserTable {
+export default interface UsersTable {
   id: Generated<string>
 
   first_name: string
@@ -24,6 +24,6 @@ export default interface UserTable {
   created_at: Generated<Date>
 }
 
-export type UserRow = Selectable<UserTable>
-export type InsertableUserRow = Insertable<UserTable>
-export type UpdateableUserRow = Updateable<UserTable>
+export type UserRow = Selectable<UsersTable>
+export type InsertableUserRow = Insertable<UsersTable>
+export type UpdateableUserRow = Updateable<UsersTable>

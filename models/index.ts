@@ -1,6 +1,6 @@
-import type AccessTokenTable from './AccessToken'
+import type AccessTokensTable from './AccessTokens'
 import type Database from './Database'
-import type PermissionTable from './Permission'
-import type UserTable from './User'
+import type PermissionsTable from './Permissions'
+import type UsersTable from './Users'
 
-export type { Database, AccessTokenTable, PermissionTable, UserTable }
+export type { Database, AccessTokensTable, PermissionsTable, UsersTable }

@@ -1,7 +1,7 @@
-import type { AccessTokenTable, PermissionTable, UserTable } from '.'
+import type { AccessTokensTable, PermissionsTable, UsersTable } from '.'
 
 export default interface Database {
-  access_token: AccessTokenTable
-  permission: PermissionTable
-  user: UserTable
+  access_token: AccessTokensTable
+  permission: PermissionsTable
+  user: UsersTable
 }

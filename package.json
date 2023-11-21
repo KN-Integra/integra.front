@@ -15,8 +15,7 @@
     "lint:fix": "yarn lint:js --fix",
     "prepare": "husky install",
     "test": "jest",
-    "migration": "node -r dotenv/config ./migrations/index.mjs",
-    "preinstall": "yarn migration"
+    "migration": "node -r dotenv/config ./migrations/index.mjs"
   },
   "lint-staged": {
     "*.{js,ts,vue}": "eslint --cache",
