@@ -16,9 +16,6 @@ export default interface UsersTable {
   gender: GenderType
   student_id: number
 
-  email: string
-  password: string
-
   permission_id: string
 
   created_at: Generated<Date>

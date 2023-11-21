@@ -1,16 +1,8 @@
 import { sql } from 'kysely'
 
 /**
- * @description This migration creates the tables for the users, permissions and access tokens.
- * The permissions table is populated with the default permissions.
- * The users table has a foreign key to the permissions table.
- * The access tokens table has a foreign key to the users table.
- * The permissions table has an index on the name column.
- * The users table has an index on the email column.
- * The users table has an index on the student_id column.
- * The users table has an index on the permission_id column.
- * The access tokens table has an index on the user_id column.
- * @param {import('kysely').Kysely} db - The database connection.
+ *
+ * @param db
  */
 export async function up(db) {
   await db.schema
@@ -91,9 +83,8 @@ export async function up(db) {
 }
 
 /**
- * @description This migration drops the tables for the users, permissions and access tokens.
- * This is the opposite of the up migration.
- * @param {import('kysely').Kysely} db - The database connection.
+ *
+ * @param db
  */
 export async function down(db) {
   await db.schema.dropTable('access_token').execute()
