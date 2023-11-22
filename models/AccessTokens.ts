@@ -4,6 +4,8 @@ export default interface AccessTokensTable {
   id: Generated<string>
 
   user_id: string
+
+  token: string
   expires_at: Date
 
   created_at: Generated<Date>

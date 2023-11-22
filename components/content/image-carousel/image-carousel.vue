@@ -4,7 +4,8 @@ import type ImageProp from '~/types/ImageProp'
 const $props = defineProps({
   images: {
     type: Object as PropType<ImageProp[]>,
-    required: true
+    required: true,
+    default: () => [] as ImageProp[]
   }
 })
 
@@ -36,11 +37,11 @@ function getImagePositionClass(index: number): string {
     return 'translate-x-0'
   }
 
-  if (index - activeIndex.value === 1 || index === $props.images.length - 1) {
+  if (index - activeIndex.value >= 1 || index === $props.images.length - 1) {
     return 'translate-x-full'
   }
 
-  if (index - activeIndex.value === -1 || index === 0) {
+  if (index - activeIndex.value <= -1 || index === 0) {
     return '-translate-x-full'
   }
 

@@ -207,5 +207,11 @@ export default defineNuxtConfig({
       tailwindcss: {},
       autoprefixer: {}
     }
+  },
+
+  runtimeConfig: {
+    JWT_SECRET: process.env.NUXT_JWT_SECRET,
+    JWT_EXPIRES_IN: process.env.NUXT_JWT_EXPIRES_IN,
+    JWT_ISSUER: process.env.NUXT_JWT_ISSUER
   }
 })

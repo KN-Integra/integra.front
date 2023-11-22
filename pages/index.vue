@@ -1,11 +1,3 @@
-<script setup lang="ts">
-import { initFlowbite } from 'flowbite'
-
-onBeforeMount(() => {
-  initFlowbite()
-})
-</script>
-
 <template>
   <div class="index-page">
     <Head>

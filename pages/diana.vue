@@ -6,19 +6,17 @@ definePageMeta({
 </script>
 
 <template>
-  <div class="diana-page">
+  <div class="diana-page min-h-screen flex flex-col">
     <Head>
       <Title>DIANA</Title>
     </Head>
 
-    <header>
-      <h1>Witaj w systemie DIANA!</h1>
-    </header>
+    <diana-header />
 
-    <NuxtPage />
+    <div class="diana-page-content mt-2 flex-grow mb-auto">
+      <NuxtPage />
+    </div>
 
-    <footer>
-      All rights reserved &copy; Koło Naukowe Integra AGH
-    </footer>
+    <diana-footer />
   </div>
 </template>

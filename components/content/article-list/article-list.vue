@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { FwbPagination, FlowbiteThemable } from 'flowbite-vue'
+
 import style from './article-list.module.css'
 
 import type { Article } from '@/types'
@@ -95,7 +96,13 @@ const TOTAL_PER_PAGE = 4
 
     <div class="w-full inline-flex justify-center items-center mt-4">
       <flowbite-themable theme="green">
-        <fwb-pagination v-model="currentPage" layout="table" :per-page="TOTAL_PER_PAGE" :total-items="(articles || []).length" class="Navigation" />
+        <fwb-pagination
+          v-model="currentPage"
+          layout="table"
+          :per-page="TOTAL_PER_PAGE"
+          :total-items="(articles || []).length"
+          class="Navigation"
+        />
       </flowbite-themable>
     </div>
 

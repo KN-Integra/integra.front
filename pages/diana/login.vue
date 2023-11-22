@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import ThemeSwitcher from '@/components/theme-switcher.vue'
 import { useUserStore } from '@/store/user.store'
 
 definePageMeta({
@@ -24,17 +23,22 @@ const $route = useRoute()
 
 const showPassword = ref(false)
 
+/**
+ *
+ */
 function togglePasswordVisibility() {
   showPassword.value = !showPassword.value
 }
 
-async function login(event: Event) {
-  const target = event.target as HTMLFormElement
-  const formData = new FormData(target)
-  const [email, password] = [formData.get('email'), formData.get('password')] as [string, string]
+const password = ref('')
+const email = ref('')
 
+/**
+ *
+ */
+async function login() {
   try {
-    await userStore.login(email, password)
+    await userStore.login(email.value, password.value)
 
     alert('Zalogowano pomyślnie')
 
@@ -47,7 +51,7 @@ async function login(event: Event) {
 
     navigateTo(($route.query.redirect as string | undefined) || '/diana')
   } catch (e) {
-    alert((e as Response).status === 401 ? 'Nieprawidłowe dane logowania' : 'Błąd serwera')
+    alert(JSON.stringify(e))
 
     // await this.$swal.fire({
     //   icon: 'error',
@@ -60,31 +64,26 @@ async function login(event: Event) {
 </script>
 
 <template>
-  <section class="bg-zinc-50 dark:bg-zinc-900">
-    <div class="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
-      <div class="inline-flex justify-evenly items-center gap-8">
-        <nuxt-link to="/" class="flex items-center mb-6 text-2xl font-semibold text-zinc-900 dark:text-white">
-          <nuxt-img class="h-12" src="https://i.postimg.cc/0jVhbXr4/integra-icon.png" alt="logo" />
-        </nuxt-link>
-
-        <theme-switcher />
-      </div>
+  <section class="bg-zinc-50 dark:bg-zinc-900 mt-6">
+    <div class="mx-auto px-2 max-w-fit">
       <div
         class="w-full bg-white rounded-lg shadow-lg dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-zinc-800 dark:border-zinc-700"
       >
-        <div class="p-6 space-y-4 md:space-y-6 sm:p-8">
+        <div class="px-6 py-4 space-y-4 md:space-y-6 sm:px-8">
           <h1
             class="text-xl inline-flex justify-center items-center w-full font-bold leading-tight tracking-tight text-zinc-900 md:text-2xl dark:text-white"
           >
             Zaloguj się do systemu DIANA
           </h1>
-          <form class="space-y-4 md:space-y-6" @submit.prevent="login">
+
+          <form class="space-y-4 md:space-y-6" @submit.prevent="login()">
             <div>
               <label for="email" class="block mb-2 text-sm font-medium text-zinc-900 dark:text-white">
                 Twój login (adres email)
               </label>
               <input
                 id="email"
+                v-model="email"
                 type="email"
                 name="email"
                 class="bg-zinc-50 border border-zinc-300 text-zinc-900 sm:text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-zinc-700 dark:border-zinc-600 dark:placeholder-zinc-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
@@ -98,6 +97,7 @@ async function login(event: Event) {
               <label for="password" class="block mb-2 text-sm font-medium text-zinc-900 dark:text-white">Hasło</label>
               <input
                 id="password"
+                v-model="password"
                 :type="showPassword ? 'text' : 'password'"
                 name="password"
                 :placeholder="showPassword ? 'Wpisz hasło' : '••••••••'"
@@ -105,11 +105,14 @@ async function login(event: Event) {
                 required="true"
                 autocomplete="current-password"
               />
-              <fa-icon
-                class="w-6 h-6 absolute right-3 top-9 cursor-pointer"
-                :icon="showPassword ? 'fas fa-eye-slash' : 'fas fa-eye'"
-                @click="togglePasswordVisibility"
-              />
+
+              <lazy-client-only>
+                <fa-icon
+                  class="w-6 h-6 absolute right-3 top-9 cursor-pointer"
+                  :icon="showPassword ? 'far fa-eye-slash' : 'far fa-eye'"
+                  @click="togglePasswordVisibility()"
+                />
+              </lazy-client-only>
             </div>
             <!-- <div class="flex items-center justify-between"> -->
             <!-- <div class="flex items-start">

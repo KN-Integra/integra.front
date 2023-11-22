@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { initFlowbite } from 'flowbite'
+
 const { $pwa } = useNuxtApp()
 
 onMounted(() => {
@@ -7,6 +9,10 @@ onMounted(() => {
   }
 
   // $pwa.update()
+})
+
+onBeforeMount(() => {
+  initFlowbite()
 })
 </script>
 
