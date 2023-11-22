@@ -1,8 +1,11 @@
-import { sql } from 'kysely'
+import { Kysely, sql } from 'kysely'
 
 /**
- *
- * @param db
+ * @description This migration creates the permissions, users and access_tokens
+ * tables. It also creates indexes for the email, student_id and permission_id
+ * columns. Finally, it inserts the default permissions into the permissions
+ * table.
+ * @param {Kysely<any>} db - The database instance.
  */
 export async function up(db) {
   await db.schema
@@ -83,11 +86,17 @@ export async function up(db) {
 }
 
 /**
- *
- * @param db
+ * @description This migration drops the permissions, users and access_tokens
+ * tables. It also drops the indexes for the email, student_id and permission_id
+ * columns.
+ * @param {Kysely<any>} db - The database instance.
  */
 export async function down(db) {
   await db.schema.dropTable('access_token').execute()
   await db.schema.dropTable('user').execute()
   await db.schema.dropTable('permission').execute()
+
+  await db.schema.dropIndex('permission_name_index').on('permissions').execute()
+  await db.schema.dropIndex('user_email_index').on('users').execute()
+  await db.schema.dropIndex('user_student_id_index').on('users').execute()
 }

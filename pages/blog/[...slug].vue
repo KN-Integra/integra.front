@@ -1,14 +1,6 @@
-<script lang="ts">
+<script setup>
 import EmptyDoc from '@/components/slots/empty-doc.vue'
 import NotFound from '@/components/slots/not-found.vue'
-
-export default {
-  name: 'BlogSlug',
-  components: {
-    EmptyDoc,
-    NotFound
-  }
-}
 </script>
 
 <template>

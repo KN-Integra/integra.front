@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { FwbPagination, FlowbiteThemable } from 'flowbite-vue'
 import style from './article-list.module.css'
 
 import type { Article } from '@/types'
@@ -13,7 +14,7 @@ const $props = defineProps({
 
 const currentPage = ref(1)
 
-const { data: articles, error } = useLazyAsyncData<Article[]>(async () => {
+const { data: articles, error } = useLazyAsyncData<Article[]>('articles', async () => {
   const {
     urlset: { url }
   } = await $fetch('/sitemap')
@@ -60,22 +61,30 @@ const paginatedArticles = computed(() => {
 const totalPages = computed(() => {
   if (!articles.value) return 0
 
-  return Math.ceil(articles.value.length / 4)
+  return Math.ceil(articles.value.length / TOTAL_PER_PAGE)
 })
 
-/**
- * @description Change current page
- * @param {number} pageNo - Page number
- */
-function onPageChange(pageNo: number) {
-  currentPage.value = pageNo
-}
+onMounted(() => {
+  refreshNuxtData('articles')
+})
 
 watch(error, (err) => {
   if (err) {
     alert('Wystąpił błąd podczas pobierania artykułów. Spróbuj ponownie później.')
   }
 })
+
+watch(currentPage, (page) => {
+  if (page > totalPages.value) {
+    currentPage.value = totalPages.value
+  }
+
+  if (page < 1) {
+    currentPage.value = 1
+  }
+})
+
+const TOTAL_PER_PAGE = 4
 </script>
 
 <template>
@@ -84,6 +93,12 @@ watch(error, (err) => {
       <article-card v-for="article in paginatedArticles" :id="article.slug" :key="article._path" :article="article" />
     </div>
 
-    <pagination-component :current-page="currentPage" :total-pages="totalPages" @page-change="onPageChange($event)" />
+    <div class="w-full inline-flex justify-center items-center mt-4">
+      <flowbite-themable theme="green">
+        <fwb-pagination v-model="currentPage" layout="table" :per-page="TOTAL_PER_PAGE" :total-items="(articles || []).length" class="Navigation" />
+      </flowbite-themable>
+    </div>
+
+    <!-- <pagination-component :current-page="currentPage" :total-pages="totalPages" @page-change="onPageChange($event)" /> -->
   </div>
 </template>

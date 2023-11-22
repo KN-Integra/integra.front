@@ -1,0 +1,9 @@
+.Navigation > div {
+  @apply !text-zinc-700 dark:!text-zinc-400;
+}
+
+.Navigation button {
+  @apply !border-zinc-300 dark:!border-zinc-700;
+  @apply !bg-zinc-800 hover:!bg-zinc-900 dark:!bg-zinc-800 dark:hover:!bg-zinc-700;
+  @apply dark:!text-zinc-400;
+}

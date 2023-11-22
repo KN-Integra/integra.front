@@ -141,12 +141,14 @@ export default defineNuxtConfig({
 
   css: [
     '@/assets/css/content.css',
+    '@/assets/css/flowbite.css',
     '@/assets/css/tailwind.css',
     '@/assets/css/main.css',
     '@/assets/css/markdown.css',
     '@/assets/css/treeview.css',
     'vue3-treeview/dist/style.css'
   ],
+
   components: true,
 
   colorMode: {
@@ -185,10 +187,10 @@ export default defineNuxtConfig({
     '@nuxtjs/color-mode',
     '@nuxt/image-edge',
     '@pinia/nuxt',
-    // 'vue-sweetalert2/nuxt'
     '@pinia-plugin-persistedstate/nuxt',
     '@nuxt/image',
-    '@vite-pwa/nuxt'
+    '@vite-pwa/nuxt',
+    '@nuxtjs/tailwindcss'
   ],
 
   build: {

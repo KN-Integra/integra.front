@@ -11,11 +11,11 @@ onMounted(() => {
 </script>
 
 <template>
-  <div class="min-h-screen w-full overflow-y-auto overflow-x-none flex flex-col">
+  <div>
     <VitePwaManifest />
-    <NuxtPage />
 
-    <large-footer />
-    <site-footer />
+    <NuxtLayout>
+      <NuxtPage />
+    </NuxtLayout>
   </div>
 </template>

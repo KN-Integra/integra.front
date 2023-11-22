@@ -1,12 +1,9 @@
-<script lang="ts">
-import IndexHeader from '@/components/index-header/index-header.vue'
+<script setup lang="ts">
+import { initFlowbite } from 'flowbite'
 
-export default {
-  name: 'IndexPage',
-  components: {
-    IndexHeader
-  }
-}
+onBeforeMount(() => {
+  initFlowbite()
+})
 </script>
 
 <template>
