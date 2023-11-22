@@ -72,7 +72,7 @@ function getImagePositionClass(index: number): string {
 
     <!-- Slider indicators -->
     <div
-      class="absolute z-10 flex space-x-3 -translate-x-1/2 bottom-5 left-1/2 bg-white/30 dark:bg-zinc-800/30 px-3 py-2 rounded-md"
+      class="absolute z-20 flex space-x-3 -translate-x-1/2 bottom-5 left-1/2 bg-white/30 dark:bg-zinc-800/30 px-3 py-2 rounded-md"
     >
       <button
         v-for="(_, index) in images"
@@ -94,7 +94,7 @@ function getImagePositionClass(index: number): string {
     <!-- Slider controls -->
     <button
       type="button"
-      class="absolute top-0 left-0 z-10 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none"
+      class="absolute top-0 left-0 z-20 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none"
       data-carousel-prev
       @click="setActiveIndex(activeIndex - 1)"
     >
@@ -110,7 +110,7 @@ function getImagePositionClass(index: number): string {
 
     <button
       type="button"
-      class="absolute top-0 right-0 z-10 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none"
+      class="absolute top-0 right-0 z-20 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none"
       data-carousel-next
       @click="setActiveIndex(activeIndex + 1)"
     >
