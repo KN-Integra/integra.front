@@ -1,5 +1,8 @@
 <script setup lang="ts">
 definePageMeta({
+  title: 'DIANA',
+  description: 'System do zarządzania kołem naukowym Integra',
+  image: 'https://i.postimg.cc/0jVhbXr4/integra-icon.png',
   key: (route) => route.fullPath,
   layout: 'diana'
 })
@@ -13,7 +16,7 @@ definePageMeta({
 
     <diana-header />
 
-    <div class="diana-page-content mt-2 flex-grow mb-auto">
+    <div class="diana-page-content px-2 md:px-4 lg:px-6 mt-2 flex-grow mb-auto">
       <NuxtPage />
     </div>
 

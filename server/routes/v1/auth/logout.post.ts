@@ -1,5 +1,7 @@
 import { createKysely } from '@vercel/postgres-kysely'
 
+import * as auth from '~/server/utils/auth'
+
 import type { Database } from '~/models'
 
 export default defineEventHandler(async (event) => {
@@ -13,13 +15,13 @@ export default defineEventHandler(async (event) => {
 
   const token = header.split(' ')[1]
 
-  const context = await auth(event)
+  const context = await auth.user(event)
 
   if (!context) {
     return createError({ statusCode: 401, message: 'Unauthorized' })
   }
 
-  const { id: userId } = context
+  const { id: userId } = context as auth.AuthContext
 
   const lastToken = await db
     .selectFrom('access_tokens')

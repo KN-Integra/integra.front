@@ -141,6 +141,7 @@ export default defineNuxtConfig({
 
   css: [
     '@/assets/css/content.css',
+    '@/assets/css/diana.css',
     '@/assets/css/flowbite.css',
     '@/assets/css/tailwind.css',
     '@/assets/css/main.css',

@@ -95,15 +95,13 @@ const TOTAL_PER_PAGE = 4
     </div>
 
     <div class="w-full inline-flex justify-center items-center mt-4">
-      <flowbite-themable theme="green">
-        <fwb-pagination
-          v-model="currentPage"
-          layout="table"
-          :per-page="TOTAL_PER_PAGE"
-          :total-items="(articles || []).length"
-          class="Navigation"
-        />
-      </flowbite-themable>
+      <fwb-pagination
+        v-model="currentPage"
+        layout="table"
+        :per-page="TOTAL_PER_PAGE"
+        :total-items="(articles || []).length"
+        class="flowbite"
+      />
     </div>
 
     <!-- <pagination-component :current-page="currentPage" :total-pages="totalPages" @page-change="onPageChange($event)" /> -->

@@ -2,20 +2,7 @@
 import { useUserStore } from '@/store/user.store'
 
 definePageMeta({
-  title: 'DIANA',
-  description: 'System do zarządzania kołem naukowym Integra',
-  image: 'https://i.postimg.cc/0jVhbXr4/integra-icon.png',
-  middleware: [
-    (to) => {
-      const userStore = useUserStore()
-
-      if (userStore.accessToken) {
-        return {
-          path: (to.query.redirect as string | undefined) || '/diana'
-        }
-      }
-    }
-  ]
+  middleware: ['no-auth']
 })
 
 const userStore = useUserStore()
@@ -64,7 +51,7 @@ async function login() {
 </script>
 
 <template>
-  <section class="bg-zinc-50 dark:bg-zinc-900 mt-6">
+  <main class="mt-6">
     <div class="mx-auto px-2 max-w-fit">
       <div
         class="w-full bg-white rounded-lg shadow-lg dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-zinc-800 dark:border-zinc-700"
@@ -149,5 +136,5 @@ async function login() {
         </div>
       </div>
     </div>
-  </section>
+  </main>
 </template>

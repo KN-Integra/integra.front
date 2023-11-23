@@ -1,0 +1,3 @@
+.diana-page .router-link-exact-active {
+  @apply text-blue-500;
+}

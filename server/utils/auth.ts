@@ -2,19 +2,26 @@ import { createKysely } from '@vercel/postgres-kysely'
 
 import * as jwt from '~/server/utils/jwt'
 
+import type { NuxtError } from '@nuxt/types'
 import type { H3Event } from 'h3'
 import type { Database } from '~/models'
 import type UserPayload from '~/types/UserPayload'
+
+export interface AuthContext {
+  id: string
+  email: string
+  permission: string
+}
 
 /**
  *
  * @param event
  */
-export default async function (event: H3Event) {
+export async function user(event: H3Event): Promise<AuthContext | NuxtError> {
   const db = createKysely<Database>()
   const header = getHeader(event, 'Authorization')
 
-  if (!header) return
+  if (!header) return createError({ statusCode: 401, message: 'Unauthorized' })
 
   const [type, token] = header.split(' ')
 
@@ -28,7 +35,7 @@ export default async function (event: H3Event) {
       throw createError({ statusCode: 401, message: 'Invalid token type' })
   }
 
-  const user = await db
+  const usr = await db
     .selectFrom('users')
     .innerJoin('permissions', 'users.permission_id', 'permissions.id')
     .select(['users.id', 'users.email', 'permissions.name as permission_name'])
@@ -36,13 +43,27 @@ export default async function (event: H3Event) {
     .where('permissions.name', '!=', 'blocked')
     .executeTakeFirst()
 
-  if (!user) {
+  if (!usr) {
     throw createError({ statusCode: 401, message: 'Invalid token' })
   }
 
-  if (user.permission_name === 'unverified') {
+  if (usr.permission_name === 'unverified') {
     throw createError({ statusCode: 401, message: 'Please verify your email' })
   }
 
-  return { id: user.id, email: user.email, permission: user.permission_name }
+  return { id: usr.id, email: usr.email, permission: usr.permission_name }
+}
+
+export async function admin(event: H3Event): Promise<AuthContext | NuxtError> {
+  const context = await user(event)
+
+  if (context instanceof Error) {
+    return context
+  }
+
+  if ((context as AuthContext).permission !== 'admin') {
+    throw createError({ statusCode: 403, message: 'Permission denied' })
+  }
+
+  return context
 }

@@ -1,12 +1,26 @@
-export default defineEventHandler(async (event) => {
-  const context = await auth(event)
+import * as auth from '~/server/utils/auth'
 
-  if (!context) {
-    return createError({ statusCode: 401, message: 'Unauthorized' })
-  }
+import type { NuxtError } from '@nuxt/types'
 
-  return {
-    statusCode: 200,
-    body: context
+export default defineEventHandler(
+  async (
+    event
+  ): Promise<
+    | NuxtError
+    | {
+        statusCode: number
+        results: auth.AuthContext
+      }
+  > => {
+    const context = await auth.user(event)
+
+    if (context instanceof Error) {
+      return context
+    }
+
+    return {
+      statusCode: 200,
+      results: context as auth.AuthContext
+    }
   }
-})
+)

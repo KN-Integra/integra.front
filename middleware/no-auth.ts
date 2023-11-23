@@ -12,7 +12,7 @@ export default defineNuxtRouteMiddleware(async (to) => {
       })
 
       return {
-        path: (to.query.redirect as string | undefined) || '/'
+        path: (to.query.redirect as string | undefined) || '/diana'
       }
     } catch (error) {
       userStore.logout()
