@@ -74,9 +74,9 @@ jobs:
     - name: Use Node.js
       uses: actions/setup-node@v3
     - name: Install dependencies
-      run: npm run ci
+      run: yarn install --immutable --immutable-cache --check-cache
     - name: Run migrations
-      run: npm run migration
+      run: yarn migration
   vercel:
     name: Preview Deploy to Vercel
     runs-on: ubuntu-latest
