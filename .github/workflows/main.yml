@@ -60,6 +60,23 @@ jobs:
       with:
         command: monitor
 
+  migrations:
+    name: Run migrations
+    runs-on: ubuntu-latest
+
+    env:
+      POSTGRES_URL: ${{ secrets.POSTGRES_URL }}
+      POSTGRES_USER: ${{ secrets.POSTGRES_USER }}
+      POSTGRES_PASSWORD: ${{ secrets.POSTGRES_PASSWORD }}
+      POSTGRES_DATABASE: ${{ secrets.POSTGRES_DATABASE }}
+
+    steps:
+    - name: Use Node.js
+      uses: actions/setup-node@v3
+    - name: Install dependencies
+      run: npm ci
+    - name: Run migrations
+      run: npm run migration
   vercel:
     name: Preview Deploy to Vercel
     runs-on: ubuntu-latest
@@ -67,6 +84,7 @@ jobs:
     needs:
     - sync_submodules
     - lint
+    - migrations
     - security
 
     env:
@@ -79,14 +97,18 @@ jobs:
       POSTGRES_PASSWORD: ${{ secrets.POSTGRES_PASSWORD }}
       POSTGRES_DATABASE: ${{ secrets.POSTGRES_DATABASE }}
 
+      NUXT_JWT_SECRET: ${{ secrets.NUXT_JWT_SECRET }}
+      NUXT_JWT_EXPIRES_IN: ${{ secrets.NUXT_JWT_EXPIRES_IN }}
+      NUXT_JWT_ISSUER: ${{ secrets.NUXT_JWT_ISSUER }}
+
     steps:
     - uses: actions/checkout@v3
     - name: Install Vercel CLI
       run: npm install --global vercel@latest
     - name: Pull Vercel Environment Information
       run: vercel pull --yes --environment=preview --token=${{ env.VERCEL_TOKEN }}
-    - name: Run Migrations
-      run: npm run migration
+    - name: Install Required Packages
+      run: npm install
     - name: Build Project Artifacts
       run: vercel build --token=${{ env.VERCEL_TOKEN }}
     - name: Deploy Project Artifacts to Vercel
