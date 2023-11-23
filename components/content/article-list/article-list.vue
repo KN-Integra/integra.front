@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { FwbPagination, FlowbiteThemable } from 'flowbite-vue'
+import { FwbPagination } from 'flowbite-vue'
 
 import style from './article-list.module.css'
 

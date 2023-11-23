@@ -5,15 +5,16 @@ import * as auth from '~/server/utils/auth'
 import type { NuxtError } from '@nuxt/types'
 import type Database from '~/models/Database'
 
-interface BaseUserPayload {
+export interface BaseUserPayload {
   id: string
   first_name: string
   last_name: string
   email: string
 }
 
-interface AdminUserPayload extends BaseUserPayload {
+export interface AdminUserPayload extends BaseUserPayload {
   permission: string
+  student_id: number
   last_login_at: Date
 }
 

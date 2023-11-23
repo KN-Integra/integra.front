@@ -7,6 +7,7 @@ import {
   faChevronLeft,
   faChevronRight,
   faMoon,
+  faPlus,
   faSignOutAlt
 } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
@@ -26,7 +27,8 @@ library.add(
   faSignOutAlt,
   faTrashAlt,
   faEdit,
-  faBan
+  faBan,
+  faPlus
 )
 
 export default defineNuxtPlugin((nuxtApp) => {
