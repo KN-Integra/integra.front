@@ -25,7 +25,7 @@ export async function user(event: H3Event): Promise<AuthContext | NuxtError> {
 
   const [type, token] = header.split(' ')
 
-  let data: UserPayload
+  let data: UserPayload | Error
 
   switch (type) {
     case 'Bearer':
@@ -33,6 +33,10 @@ export async function user(event: H3Event): Promise<AuthContext | NuxtError> {
       break
     default:
       throw createError({ statusCode: 401, message: 'Invalid token type' })
+  }
+
+  if (data instanceof Error) {
+    throw createError({ statusCode: 401, message: 'Invalid token' })
   }
 
   const usr = await db
@@ -54,6 +58,10 @@ export async function user(event: H3Event): Promise<AuthContext | NuxtError> {
   return { id: usr.id, email: usr.email, permission: usr.permission_name }
 }
 
+/**
+ *
+ * @param event
+ */
 export async function admin(event: H3Event): Promise<AuthContext | NuxtError> {
   const context = await user(event)
 

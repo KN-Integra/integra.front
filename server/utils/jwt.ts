@@ -28,16 +28,20 @@ export async function encrypt<T extends jose.JWTPayload>(data: T): Promise<strin
  *
  * @param jwt
  */
-export async function decrypt<T extends jose.JWTPayload>(jwt: string): Promise<T> {
+export async function decrypt<T extends jose.JWTPayload>(jwt: string): Promise<T | Error> {
   if (!runtimeConfig.JWT_SECRET) throw new Error('JWT_SECRET is not defined')
   if (!runtimeConfig.JWT_ISSUER) throw new Error('JWT_ISSUER is not defined')
 
   const secret = jose.base64url.decode(runtimeConfig.JWT_SECRET)
 
-  const { payload } = await jose.jwtDecrypt<T>(jwt, secret, {
-    issuer: `urn:${runtimeConfig.JWT_ISSUER}:issuer`,
-    audience: `urn:${runtimeConfig.JWT_ISSUER}:audience`
-  })
+  try {
+    const { payload } = await jose.jwtDecrypt<T>(jwt, secret, {
+      issuer: `urn:${runtimeConfig.JWT_ISSUER}:issuer`,
+      audience: `urn:${runtimeConfig.JWT_ISSUER}:audience`
+    })
 
-  return payload
+    return payload
+  } catch (error) {
+    return new Error('Invalid JWT')
+  }
 }

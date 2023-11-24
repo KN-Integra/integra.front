@@ -3,6 +3,7 @@ import { createKysely } from '@vercel/postgres-kysely'
 import * as auth from '~/server/utils/auth'
 
 import type { Database } from '~/models'
+import type { GenderType } from '~/models/Users'
 
 export interface EditUserPayload {
   first_name: string
@@ -10,6 +11,9 @@ export interface EditUserPayload {
   email: string
   student_id: number
   permission_id: string
+  password: string
+  confirm_password: string
+  gender: GenderType
 }
 
 export default defineEventHandler(async (event) => {
@@ -34,6 +38,26 @@ export default defineEventHandler(async (event) => {
 
   const { permission, id } = context as auth.AuthContext
 
+  const currentUser = await db
+    .selectFrom('users')
+    .select(['first_name', 'last_name', 'gender', 'email', 'password', 'permission_id', 'student_id'])
+    .where('users.id', '=', params.id)
+    .executeTakeFirst()
+
+  if (body.password !== body.confirm_password) {
+    return createError({
+      statusCode: 400,
+      message: 'Password and confirm password do not match'
+    })
+  }
+
+  if (!currentUser) {
+    return createError({
+      statusCode: 404,
+      message: 'User not found'
+    })
+  }
+
   if (permission !== 'admin') {
     if (params.id !== id) {
       return createError({
@@ -45,9 +69,8 @@ export default defineEventHandler(async (event) => {
     const user = await db
       .updateTable('users')
       .set({
-        first_name: body.first_name,
-        last_name: body.last_name,
-        email: body.email
+        email: body.email || currentUser.email,
+        password: body.password || currentUser.password
       })
       .where('id', '=', params.id)
       .returning(['first_name', 'last_name', 'email'])
@@ -68,19 +91,15 @@ export default defineEventHandler(async (event) => {
 
   const user = await db
     .updateTable('users')
-    .set((eb) => ({
-      first_name:
-        body.first_name || eb.selectFrom('users').select('users.first_name').where('users.id', '=', params.id).limit(1),
-      last_name:
-        body.last_name || eb.selectFrom('users').select('users.last_name').where('users.id', '=', params.id).limit(1),
-      email: body.email || eb.selectFrom('users').select('users.email').where('users.id', '=', params.id).limit(1),
-      permission_id:
-        body.permission_id ||
-        eb.selectFrom('users').select('users.permission_id').where('users.id', '=', params.id).limit(1),
-      student_id: body.student_id
-        ? Number(body.student_id)
-        : eb.selectFrom('users').select('users.student_id').where('users.id', '=', params.id).limit(1)
-    }))
+    .set({
+      first_name: body.first_name || currentUser.first_name,
+      last_name: body.last_name || currentUser.last_name,
+      gender: body.gender || currentUser.gender,
+      email: body.email || currentUser.email,
+      password: body.password || currentUser.password,
+      permission_id: body.permission_id || currentUser.permission_id,
+      student_id: body.student_id ? Number(body.student_id) : currentUser.student_id
+    })
     .where('id', '=', params.id)
     .returning(['first_name', 'last_name', 'email', 'permission_id', 'student_id'])
     .executeTakeFirst()

@@ -52,14 +52,18 @@ export default defineEventHandler(async (event): Promise<ILoginResponseBody | Er
 
   if (lastToken) {
     try {
-      await jwt.decrypt<UserPayload>(lastToken.token)
+      const data = await jwt.decrypt<UserPayload>(lastToken.token)
+
+      if (data instanceof Error) {
+        throw data
+      }
 
       return {
         accessToken: lastToken.token,
         tokenType: 'Bearer'
       }
     } catch (error) {
-      // console.info('Invalid token', error)
+      return createError({ statusCode: 401, message: 'Invalid token' })
     }
   }
 

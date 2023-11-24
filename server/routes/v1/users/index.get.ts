@@ -10,6 +10,7 @@ export interface BaseUserPayload {
   first_name: string
   last_name: string
   email: string
+  gender: string
 }
 
 export interface AdminUserPayload extends BaseUserPayload {
@@ -41,7 +42,7 @@ export default defineEventHandler(
     if (permission !== 'admin') {
       const users = (await db
         .selectFrom('users')
-        .select(['first_name', 'last_name', 'email'])
+        .select(['first_name', 'last_name', 'email', 'gender'])
         .execute()) as BaseUserPayload[]
 
       return {
@@ -66,6 +67,7 @@ export default defineEventHandler(
         'users.first_name',
         'users.last_name',
         'users.student_id',
+        'users.gender',
         'users.email',
         'permissions.name as permission'
       ])

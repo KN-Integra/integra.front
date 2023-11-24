@@ -7,7 +7,6 @@ import type { AuthContext } from '~/server/utils/auth'
 
 /**
  *
- * @param to
  */
 export async function adminRouteMiddleware(): Promise<RouteLocationNormalized | void> {
   const userStore = useUserStore()

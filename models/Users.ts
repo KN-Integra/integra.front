@@ -1,12 +1,12 @@
 import type { Generated, Insertable, Selectable, Updateable } from 'kysely'
 
 export enum GenderEnum {
-  MALE = 'male',
-  FEMALE = 'female',
-  OTHER = 'other'
+  male = 'male',
+  female = 'female',
+  other = 'other'
 }
 
-export type GenderType = typeof GenderEnum
+export type GenderType = keyof typeof GenderEnum
 
 export default interface UsersTable {
   id: Generated<string>

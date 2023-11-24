@@ -21,12 +21,18 @@ export const useUserStore = defineStore({
         }
       })
 
-      if (error.value) throw error
-
-      if (!data.value) throw new Error('No value')
-
       this.accessToken = ''
       this.tokenType = ''
+
+      if (error.value) {
+        if (error.value?.statusCode === 401) {
+          return navigateTo('/diana/login')
+        }
+
+        throw error
+      }
+
+      if (!data.value) throw new Error('No value')
 
       return navigateTo('/diana/login')
     },

@@ -1,13 +1,19 @@
 import { createKysely } from '@vercel/postgres-kysely'
-import type { Database } from '~/models'
+
 import * as auth from '~/server/utils/auth'
+
+import type { Database } from '~/models'
+import type { GenderType, InsertableUserRow } from '~/models/Users'
 
 interface CreateUserPayload {
   first_name: string
   last_name: string
+  gender: GenderType
   email: string
   student_id: number
   permission_id: string
+  password: string
+  confirm_password: string
 }
 
 export default defineEventHandler(async (event) => {
@@ -21,19 +27,33 @@ export default defineEventHandler(async (event) => {
     return context
   }
 
-  // TODO: Password
-  const password = (Math.random() + 1).toString(36).substring(7)
+  if (!(body.password && body.confirm_password)) {
+    return createError({
+      statusCode: 400,
+      message: 'Password and confirm password are required'
+    })
+  }
+
+  if (body.password !== body.confirm_password) {
+    return createError({
+      statusCode: 400,
+      message: 'Password and confirm password do not match'
+    })
+  }
+
+  const row = {
+    first_name: body.first_name,
+    last_name: body.last_name,
+    gender: body.gender,
+    email: body.email,
+    student_id: body.student_id,
+    permission_id: body.permission_id,
+    password: body.password
+  } as InsertableUserRow
 
   const user = await db
     .insertInto('users')
-    .values({
-      first_name: body.first_name,
-      last_name: body.last_name,
-      email: body.email,
-      student_id: body.student_id,
-      permission_id: body.permission_id,
-      password: hash(password)
-    })
+    .values(row)
     .returning(['first_name', 'last_name', 'email'])
     .executeTakeFirst()
 
