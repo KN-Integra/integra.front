@@ -56,8 +56,8 @@ export default defineEventHandler(
       .innerJoin('permissions', 'users.permission_id', 'permissions.id')
       .select(({ selectFrom }) => [
         selectFrom('access_tokens')
+          .whereRef('users.id', '=', 'access_tokens.user_id')
           .select('access_tokens.created_at')
-          .innerJoin('users', 'access_tokens.user_id', 'users.id')
           .orderBy('access_tokens.created_at', 'desc')
           .limit(1)
           .as('last_login_at')

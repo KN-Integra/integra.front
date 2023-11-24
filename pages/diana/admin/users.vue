@@ -44,6 +44,16 @@ const { data: permissionData } = useLazyFetch('/v1/permissions', {
   }
 })
 
+const DATE_FORMATTING_OPTIONS = {
+  weekday: 'long',
+  year: 'numeric',
+  month: 'long',
+  day: 'numeric',
+  hour: 'numeric',
+  minute: 'numeric',
+  second: 'numeric'
+}
+
 const { data, error } = useLazyAsyncData('users', () =>
   $fetch('/v1/users', {
     headers: {
@@ -226,8 +236,8 @@ async function saveUser() {
   closeModal()
 }
 
-watch(error, (err) => {
-  alert(err)
+onBeforeMount(async () => {
+  await refreshNuxtData('users')
 })
 </script>
 
@@ -290,7 +300,11 @@ watch(error, (err) => {
           <fwb-table-cell class="capitalize">{{ GenderToPolishEnum[user.gender as GenderType] }}</fwb-table-cell>
           <fwb-table-cell>{{ user.email }}</fwb-table-cell>
           <fwb-table-cell>{{ RoleToPolishEnum[user.permission as RoleToPolishKey] }}</fwb-table-cell>
-          <fwb-table-cell>{{ new Date(user.last_login_at).toUTCString() }}</fwb-table-cell>
+          <fwb-table-cell class="capitalize">{{
+            new Date(user.last_login_at).getTime()
+              ? new Date(user.last_login_at).toLocaleString('pl-PL', DATE_FORMATTING_OPTIONS)
+              : 'Nigdy'
+          }}</fwb-table-cell>
 
           <fwb-table-cell>
             <div class="flex justify-center items-center gap-2">
