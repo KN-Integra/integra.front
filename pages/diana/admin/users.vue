@@ -429,21 +429,13 @@ watch(error, (err) => {
       v-if="showSuccessToast"
       divide
       type="success"
-      class="toast fixed top-20 right-1/2 translate-x-1/2 sm:right-8 sm:translate-x-0"
+      class="flowbite toast fixed top-20 right-1/2 translate-x-1/2 sm:right-8 sm:translate-x-0"
     >
       Użytkownik został {{ mode === 'create' ? 'utworzony' : 'zaktualizowany' }} pomyślnie.
     </fwb-toast>
 
     <fwb-toast
       v-if="showErrorToast"
-      divide
-      type="warning"
-      class="toast fixed top-20 right-1/2 translate-x-1/2 sm:right-8 sm:translate-x-0"
-    >
-      Wystąpił błąd podczas {{ mode === 'create' ? 'tworzenia' : 'aktualizacji' }} użytkownika.
-    </fwb-toast>
-
-    <fwb-toast
       divide
       type="warning"
       class="flowbite toast fixed top-20 right-1/2 translate-x-1/2 sm:right-8 sm:translate-x-0"
