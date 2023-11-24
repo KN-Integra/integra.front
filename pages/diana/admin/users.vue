@@ -302,7 +302,7 @@ onBeforeMount(async () => {
           <fwb-table-cell>{{ RoleToPolishEnum[user.permission as RoleToPolishKey] }}</fwb-table-cell>
           <fwb-table-cell class="capitalize">{{
             new Date(user.last_login_at).getTime()
-              ? new Date(user.last_login_at).toLocaleString('pl-PL', DATE_FORMATTING_OPTIONS)
+              ? new Date(user.last_login_at).toLocaleString('pl-PL', DATE_FORMATTING_OPTIONS as any)
               : 'Nigdy'
           }}</fwb-table-cell>
 
