@@ -71,9 +71,10 @@ jobs:
       POSTGRES_DATABASE: ${{ secrets.POSTGRES_DATABASE }}
 
     steps:
-    - name: Use Node.js
-      uses: actions/setup-node@v3
+    - uses: actions/setup-node@v3
     - uses: actions/checkout@v3
+    - run: ls
+    - run: ls ./migrations
     - name: Install dependencies
       run: yarn install --immutable --immutable-cache --check-cache
     - name: Run migrations
