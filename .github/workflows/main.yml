@@ -73,12 +73,10 @@ jobs:
     steps:
     - name: Use Node.js
       uses: actions/setup-node@v3
-    - name: Change dir
-      run: cd ..
     - name: Install dependencies
-      run: yarn install --immutable --immutable-cache --check-cache
+      run: cd .. && yarn install --immutable --immutable-cache --check-cache
     - name: Run migrations
-      run: yarn migration
+      run: cd .. && yarn migration
   vercel:
     name: Preview Deploy to Vercel
     runs-on: ubuntu-latest
