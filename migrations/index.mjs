@@ -1,22 +1,13 @@
-import { createKysely } from '@vercel/postgres-kysely'
-import * as path from 'path'
-// import { Pool } from 'pg'
 import { promises as fs } from 'fs'
-import { Kysely, Migrator, FileMigrationProvider } from 'kysely'
+import * as path from 'path'
 
+import { createKysely } from '@vercel/postgres-kysely'
+import { Migrator, FileMigrationProvider } from 'kysely'
+
+/**
+ *
+ */
 async function migrateToLatest() {
-  // const db =
-  //   new Kysely() <
-  //   Database >
-  //   {
-  //     dialect: new PostgresDialect({
-  //       pool: new Pool({
-  //         host: 'localhost',
-  //         database: 'kysely_test'
-  //       })
-  //     })
-  //   }
-
   const db = createKysely()
 
   Object.defineProperty(db.getExecutor().adapter, 'supportsTransactionalDdl', () => false)

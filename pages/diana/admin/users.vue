@@ -54,7 +54,7 @@ const DATE_FORMATTING_OPTIONS = {
   second: 'numeric'
 }
 
-const { data, error } = useLazyAsyncData('users', () =>
+const { data } = useLazyAsyncData('users', () =>
   $fetch('/v1/users', {
     headers: {
       Authorization: `${userStore.tokenType} ${userStore.accessToken}`
@@ -243,8 +243,8 @@ onBeforeMount(async () => {
 
 <template>
   <section class="mt-8">
-    <div class="flex justify-between items-center">
-      <h1 class="text-3xl font-bold">Użytkownicy</h1>
+    <div class="flex justify-between items-center mb-2">
+      <h3 class="text-3xl font-bold">Użytkownicy</h3>
 
       <fwb-button color="green" class="flowbite gap-2" @click="openModal('create')">
         <span class="inline-flex justify-center items-center flex-nowrap gap-2">

@@ -3,24 +3,16 @@ const $route = useRoute()
 
 const ROUTES = [
   {
+    name: 'Strona główna',
+    path: '/diana'
+  },
+  {
     name: 'Panel administracyjny',
     path: '/diana/admin'
   },
   {
-    name: 'Lista użytkowników',
-    path: '/diana/admin/users'
-  },
-  {
-    name: 'Lista zgłoszeń',
-    path: '/diana/applications'
-  },
-  {
     name: 'Lista zasobów',
     path: '/diana/resources'
-  },
-  {
-    name: 'Lista uprawnień',
-    path: '/diana/admin/permissions'
   }
 ]
 
