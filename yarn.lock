@@ -7585,10 +7585,10 @@ floating-vue@2.0.0-beta.24:
     "@floating-ui/dom" "~1.1.1"
     vue-resize "^2.0.0-alpha.1"
 
-flowbite-vue@^0.1.0:
-  version "0.1.0"
-  resolved "https://registry.yarnpkg.com/flowbite-vue/-/flowbite-vue-0.1.0.tgz#e018a0450945f5bcb634ec0c3c7e2c98b971ea8b"
-  integrity sha512-36SJbc4Wk+Gleh6G5RytYG4aChjSIXKSIdF9uryT8gB4EyAp863/yE10wiyFjj/B+a+awpefIuTzCg8lmF2p+A==
+flowbite-vue@^0.1.2:
+  version "0.1.2"
+  resolved "https://registry.yarnpkg.com/flowbite-vue/-/flowbite-vue-0.1.2.tgz#a09c96625c788414c13bab6bb656fa3b845b20f9"
+  integrity sha512-0XFqA+DYe8XAULLSh1LoWDVyBrHX/D3/tnPNesblYeogJxnW9wjoC25+v3oPQP33kB+wGy4fjzL25QiTV+CJHA==
   dependencies:
     "@vueuse/core" "9.3.0"
     classnames "2.3.2"
