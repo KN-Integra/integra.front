@@ -2,7 +2,6 @@ import type { ToCNode, ToCFlatNode } from '@/types'
 
 /**
  * Flattens a tree of nodes into an array of nodes with children as ids
- *
  * @description This function is used to flatten the table of contents tree
  * @param {ToCNode[]} into The array to flatten into
  * @param {ToCNode} node The node to flatten
@@ -17,7 +16,6 @@ function flattenToC(into: ToCNode[], node?: ToCNode | ToCNode[]): ToCNode[] {
 
 /**
  * Converts a tree of nodes into a flat object of nodes with children as ids
- *
  * @description This function is used to convert the table of contents tree into a flat object
  * @param {ToCNode[]} data The tree to convert
  * @returns {ToCFlatNode} The converted tree

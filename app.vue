@@ -8,7 +8,17 @@ onMounted(() => {
     alert('App ready to work offline')
   }
 
-  // $pwa.update()
+  if ($pwa?.needRefresh) {
+    const refresh = prompt('App needs refresh. Do you want to do that now?')
+
+    if (!refresh) {
+      return
+    }
+
+    reloadNuxtApp({
+      persistState: true
+    })
+  }
 })
 
 onBeforeMount(() => {

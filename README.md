@@ -2,6 +2,15 @@
 
 Look at the [Nuxt 3 documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
 
+## Clone and Pull repository with Submodules
+
+```bash
+git clone https://github.com/KN-Integra/integra.front
+cd integra.front
+git pull
+git submodule update --init --recursive
+```
+
 ## Setup
 
 Make sure to install the dependencies:

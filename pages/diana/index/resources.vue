@@ -20,6 +20,7 @@ import type { InsertableAccessResourceRow, AccessControlRow } from '~/models/Acc
 
 const userStore = useUserStore()
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const DATE_FORMATTING_OPTIONS = {
   weekday: 'long',
   year: 'numeric',
@@ -46,6 +47,8 @@ const { data: usersData } = useLazyAsyncData('users', () =>
   })
 )
 
+// TODO: Finish RBAC
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const accessControl = computed(() => {
   if (!accessControlData.value || !('results' in accessControlData.value)) return []
 
@@ -56,6 +59,8 @@ const accessControl = computed(() => {
     }
   >[]
 })
+
+const resourceItems = computed(() => [] as any)
 
 const users = computed(() => {
   if (!usersData.value || !('results' in usersData.value)) return []
@@ -233,19 +238,17 @@ function shortenId(id: string) {
 
       <fwb-table-body>
         <fwb-table-row v-for="item in resourceItems" :key="item.id">
+          <fwb-table-cell>{{ shortenId(item.id) }}</fwb-table-cell>
           <fwb-table-cell>{{ item.name }}</fwb-table-cell>
           <fwb-table-cell>{{ item.shop_url }}</fwb-table-cell>
           <fwb-table-cell>{{ item.shop_item_id }}</fwb-table-cell>
-          <fwb-table-cell>{{ resource.user_last_name }}, {{ resource.user_first_name }}</fwb-table-cell>
-          <fwb-table-cell class="capitalize">{{
-            new Date(resource.created_at as Date).toLocaleString('pl-PL', DATE_FORMATTING_OPTIONS as any)
-          }}</fwb-table-cell>
+          <fwb-table-cell>{{ item.amount }}</fwb-table-cell>
 
           <fwb-table-cell>
             <div class="flex justify-center items-center gap-2">
               <fwb-button
                 class="flowbite !p-2"
-                @click="openModal('edit', resource as unknown as InsertableAccessResourceRow)"
+                @click="openModal('edit', item as unknown as InsertableAccessResourceRow)"
               >
                 <span class="sr-only">Edytuj</span>
 
