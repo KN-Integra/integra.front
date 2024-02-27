@@ -13,7 +13,6 @@ const activeIndex = ref(0)
 
 /**
  * Set the active index of the carousel.
- *
  * @param {number} index - The index to set.
  */
 function setActiveIndex(index: number): void {
@@ -28,7 +27,6 @@ function setActiveIndex(index: number): void {
 
 /**
  * Get the position class of the image.
- *
  * @param {number} index - The index of the image.
  * @returns {string} The position class.
  */
