@@ -1,5 +1,7 @@
 <script setup lang="ts">
 // @ts-expect-error - TS doesn't know about CSS modules
+import getNavigationContent from '~/helpers/getNavigationContent'
+
 import style from './site-footer.module.css'
 
 import type { ISimpleSitemap } from '~/types'
@@ -7,22 +9,7 @@ import type { ISimpleSitemap } from '~/types'
 const classes = computed(() => style)
 const year = computed(() => new Date().getFullYear())
 
-const { data: sitemap } = useAsyncData<ISimpleSitemap[]>('sitemap', async () => {
-  const navigation = await fetchContentNavigation()
-
-  if (navigation.length === 0) return []
-
-  const nav = navigation[0].children
-
-  if (!(nav && nav.length)) return []
-
-  return nav
-    .filter((u) => isNaN(Number(u._path.split('/').at(-1))))
-    .map((u) => ({
-      ...u,
-      children: u.children ? u.children.filter((c) => c._path !== u._path) : undefined
-    }))
-})
+const { data: sitemap } = useAsyncData<ISimpleSitemap[]>('sitemap', getNavigationContent)
 </script>
 
 <template>

@@ -90,7 +90,7 @@ onMounted(() => {
       v-else-if="'image' in $props && $props.image"
       :src="$props.image.src"
       :alt="$props.alt"
-      :style="{ maxWidth: ImageSize[$props.image.size] }"
+      :style="{ width: ImageSize[$props.image.size] }"
       @click="fullScreen = true"
     />
 

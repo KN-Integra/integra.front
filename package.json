@@ -96,6 +96,7 @@
     "vue-jest": "^5.0.0-alpha.10"
   },
   "resolutions": {
-    "string-width": "4.2.3"
+    "string-width": "4.2.3",
+    "wrap-ansi": "7.0.0"
   }
 }
