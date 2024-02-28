@@ -11330,10 +11330,15 @@ nanoid@^3.3.7:
   resolved "https://registry.yarnpkg.com/nanoid/-/nanoid-3.3.7.tgz#d0c301a691bc8d54efa0a2226ccf3fe2fd656bd8"
   integrity sha512-eSRppjcPIatRIMC1U6UngP8XFcz8MQWGQdt1MTBQ7NaAmvXDfvNxbvWV3x2y6CdEUciCSsDHDQZbhYaB8QEo2g==
 
-nanoid@^4.0.0, nanoid@^4.0.2:
+nanoid@^4.0.2:
   version "4.0.2"
   resolved "https://registry.yarnpkg.com/nanoid/-/nanoid-4.0.2.tgz#140b3c5003959adbebf521c170f282c5e7f9fb9e"
   integrity sha512-7ZtY5KTCNheRGfEFxnedV5zFiORN1+Y1N6zvPTnHQd8ENUvfaDBeuJDZb2bN/oXwXxu3qkTXDzy57W5vAmDTBw==
+
+nanoid@^5.0.4:
+  version "5.0.6"
+  resolved "https://registry.yarnpkg.com/nanoid/-/nanoid-5.0.6.tgz#7f99a033aa843e4dcf9778bdaec5eb02f4dc44d5"
+  integrity sha512-rRq0eMHoGZxlvaFOUdK1Ev83Bd1IgzzR+WJ3IbDJ7QOSdAxYjlurSPqFs9s4lJg29RT6nPwizFtJhQS6V5xgiA==
 
 napi-wasm@^1.1.0:
   version "1.1.0"
@@ -15294,13 +15299,13 @@ vue-jest@^5.0.0-alpha.10:
     source-map "0.5.6"
     tsconfig "^7.0.0"
 
-vue-mermaid-string@^4.0.69:
-  version "4.0.70"
-  resolved "https://registry.yarnpkg.com/vue-mermaid-string/-/vue-mermaid-string-4.0.70.tgz#04b84d78b0baf641273949f3fcdb01bdafdf583d"
-  integrity sha512-gyyRJtnNAMvJz88ycp+tnx7zsNqXMApEYEJvByAXlnZ6SMK8FjVl0S4gM6Oq0FytaXbKmbQrOkOi3rHxT8qCKA==
+vue-mermaid-string@^5.0.0:
+  version "5.0.0"
+  resolved "https://registry.yarnpkg.com/vue-mermaid-string/-/vue-mermaid-string-5.0.0.tgz#487271fbe241fcb0fa58c7d9ceff121f84eb6a74"
+  integrity sha512-viKSYRJByw3FnvbOi9GQPpeZds+MtfafSVfN3uYyMMlBNil8Iqcuk1H8sPqWyKFAAU3Pu8vIE+akdTJZvY1BuQ==
   dependencies:
     mermaid "^8.8.3"
-    nanoid "^4.0.0"
+    nanoid "^5.0.4"
 
 vue-resize@^2.0.0-alpha.1:
   version "2.0.0-alpha.1"
