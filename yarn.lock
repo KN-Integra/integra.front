@@ -2183,10 +2183,10 @@
     semver "^7.3.5"
     tar "^6.1.11"
 
-"@neondatabase/serverless@0.6.0":
-  version "0.6.0"
-  resolved "https://registry.yarnpkg.com/@neondatabase/serverless/-/serverless-0.6.0.tgz#efe001f571e85af79c8042601ec694f96ca8fb17"
-  integrity sha512-qXxBRYN0m2v8kVQBfMxbzNGn2xFAhTXFibzQlE++NfJ56Shz3m7+MyBBtXDlEH+3Wfa6lToDXf1MElocY4sJ3w==
+"@neondatabase/serverless@0.7.2":
+  version "0.7.2"
+  resolved "https://registry.yarnpkg.com/@neondatabase/serverless/-/serverless-0.7.2.tgz#4deeda842df154e061b8e798dec5d03d1310fa92"
+  integrity sha512-wU3WA2uTyNO7wjPs3Mg0G01jztAxUxzd9/mskMmtPwPTjf7JKWi9AW5/puOGXLxmZ9PVgRFeBVRVYq5nBPhsCg==
   dependencies:
     "@types/pg" "8.6.6"
 
@@ -3987,19 +3987,19 @@
     node-gyp-build "^4.2.2"
     resolve-from "^5.0.0"
 
-"@vercel/postgres-kysely@^0.6.0":
-  version "0.6.0"
-  resolved "https://registry.yarnpkg.com/@vercel/postgres-kysely/-/postgres-kysely-0.6.0.tgz#07a7c5ee5dddf634fd8ab8140d3f4182fcf4f04e"
-  integrity sha512-R5iSb7aM0XDztcOXfBaBBgdIHLtn0auFCXXJA6gq0GCWSZyBTv4OawsIWxix4lSjqql/MKmze7zvAVP21UkxMg==
+"@vercel/postgres-kysely@^0.7.2":
+  version "0.7.2"
+  resolved "https://registry.yarnpkg.com/@vercel/postgres-kysely/-/postgres-kysely-0.7.2.tgz#ed827b4d9eb950394d072fddb695e782f04da8f5"
+  integrity sha512-2sLPgcrZg1YzG6dQMuS1O+63cbK9sUHxpmhz0pN8PMccca1VpK571oONuv5OsD1xzEUmFwRtOdwIMXUWSMMDrA==
   dependencies:
-    "@vercel/postgres" "0.5.1"
+    "@vercel/postgres" "0.7.2"
 
-"@vercel/postgres@0.5.1":
-  version "0.5.1"
-  resolved "https://registry.yarnpkg.com/@vercel/postgres/-/postgres-0.5.1.tgz#af986133f5ec53b4839561fc3cc2a5fb1867868d"
-  integrity sha512-JKl8QOBIDnifhkxAhIKtY0A5Tb8oWBf2nzZhm0OH7Ffjsl0hGVnDL2w1/FCfpX8xna3JAWM034NGuhZfTFdmiw==
+"@vercel/postgres@0.7.2":
+  version "0.7.2"
+  resolved "https://registry.yarnpkg.com/@vercel/postgres/-/postgres-0.7.2.tgz#a3d1737a7e3717c2a9088b73f8bba0401666173a"
+  integrity sha512-IqR/ZAvoPGcPaXl9eWWB5KaA+w/81RzZa/18P4izQRHpNBkTGt9HwGfYi9+wut5UgxNq4QSX9A7HIQR6QDvX2Q==
   dependencies:
-    "@neondatabase/serverless" "0.6.0"
+    "@neondatabase/serverless" "0.7.2"
     bufferutil "4.0.8"
     utf-8-validate "6.0.3"
     ws "8.14.2"
@@ -4688,7 +4688,7 @@ atob@^2.1.2:
   resolved "https://registry.yarnpkg.com/atob/-/atob-2.1.2.tgz#6d9517eb9e030d2436666651e86bd9f6f13533c9"
   integrity sha512-Wm6ukoaOGJi/73p/cl2GvLjTI5JM1k/O14isD73YML8StrH/7/lRFgmg8nICZgD3bZZvjwCGxtMOD3wWNAu8cg==
 
-autoprefixer@^10.2.5, autoprefixer@^10.4.16, autoprefixer@^10.4.17:
+autoprefixer@^10.2.5, autoprefixer@^10.4.17:
   version "10.4.17"
   resolved "https://registry.yarnpkg.com/autoprefixer/-/autoprefixer-10.4.17.tgz#35cd5695cbbe82f536a50fa025d561b01fdec8be"
   integrity sha512-/cpVNRLSfhOtcGflT13P2794gVSgmPgTR+erw5ifnMLZb0UnSlkK4tquLmkd3BhA+nLo5tX8Cu0upUsGKvKbmg==
@@ -15690,6 +15690,7 @@ workbox-window@7.0.0, workbox-window@^7.0.0:
     workbox-core "7.0.0"
 
 "wrap-ansi-cjs@npm:wrap-ansi@^7.0.0", wrap-ansi@^7.0.0:
+  name wrap-ansi-cjs
   version "7.0.0"
   resolved "https://registry.yarnpkg.com/wrap-ansi/-/wrap-ansi-7.0.0.tgz#67e145cff510a6a6984bdf1152911d69d2eb9e43"
   integrity sha512-YVGIj2kamLSTxw6NsZjoBxfSwsn0ycdesmc4p+Q21c5zPuZ1pl+NfxVdxPtdHvmNVOQ6XSYG4AUtyt/Fi7D16Q==

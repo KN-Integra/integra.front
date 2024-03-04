@@ -34,7 +34,7 @@
     "@pinia/nuxt": "^0.5.1",
     "@tailwindcss/typography": "^0.5.9",
     "@vercel/analytics": "^1.2.2",
-    "@vercel/postgres-kysely": "^0.6.0",
+    "@vercel/postgres-kysely": "^0.7.2",
     "dotenv": "^16.3.1",
     "eslint-plugin-jsdoc": "^46.9.1",
     "flowbite": "^2.3.0",
