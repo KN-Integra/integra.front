@@ -47,7 +47,7 @@
     "pinia": "^2.1.7",
     "sitemap": "^7.1.1",
     "typescript": "^5.2.2",
-    "vue-mermaid-string": "^4.0.69",
+    "vue-mermaid-string": "^5.0.0",
     "vue3-treeview": "^0.4.1",
     "xml-js": "^1.6.11"
   },
