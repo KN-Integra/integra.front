@@ -1,66 +1,49 @@
-<script lang="ts">
+<script setup lang="ts">
 import ThemeSwitcher from '@/components/theme-switcher.vue'
 import { APP_TITLE } from '@/settings/constants'
 
 import style from './index-navigation.module.css'
 
-interface SiteNavData {
-  navbarOpen: boolean
-  appTitle: string
-}
+import type { ISimpleSitemap } from '~/types'
 
-export default {
-  name: 'IndexNavigationComponent',
-  components: {
-    ThemeSwitcher
-  },
-  async setup() {
-    const { data: navigation } = await useAsyncData('navigation', () => {
-      return fetchContentNavigation()
-    })
+const navbarOpen = ref(false)
 
-    if (!navigation.value) return {}
+const classes = computed(() => style)
 
-    const nav = navigation.value[0].children
+const { data: sitemap } = useAsyncData<ISimpleSitemap[]>('sitemap', async () => {
+  const navigation = await fetchContentNavigation()
 
-    if (!(nav && nav.length)) return {}
+  if (navigation.length === 0) return []
 
-    const sitemap = nav
-      .filter((u) => isNaN(Number(u._path.split('/').at(-1))))
-      .map((u) => ({
-        ...u,
-        children: u.children ? u.children.filter((c) => c._path !== u._path) : undefined
-      }))
+  const nav = navigation[0].children
 
-    return {
-      sitemap
-    }
-  },
-  data: (): SiteNavData => ({
-    navbarOpen: false,
-    appTitle: APP_TITLE
-  }),
-  computed: {
-    classes() {
-      return style
-    }
-  },
-  methods: {
-    toggleSidebar(e: Event) {
-      e.preventDefault()
+  if (!(nav && nav.length)) return []
 
-      const toggleElement = e.target as HTMLElement
-      const targetElementId = toggleElement.getAttribute('data-dropdown-toggle')
+  return nav
+    .filter((u) => isNaN(Number(u._path.split('/').at(-1))))
+    .map((u) => ({
+      ...u,
+      children: u.children ? u.children.filter((c) => c._path !== u._path) : undefined
+    }))
+})
 
-      if (!targetElementId) return
+/**
+ *
+ * @param e
+ */
+function toggleSidebar(e: Event) {
+  e.preventDefault()
 
-      const targetElement = document.getElementById(targetElementId)
+  const toggleElement = e.target as HTMLElement
+  const targetElementId = toggleElement.getAttribute('data-dropdown-toggle')
 
-      if (!targetElement) return
+  if (!targetElementId) return
 
-      targetElement.classList.toggle('hidden')
-    }
-  }
+  const targetElement = document.getElementById(targetElementId)
+
+  if (!targetElement) return
+
+  targetElement.classList.toggle('hidden')
 }
 </script>
 
@@ -71,7 +54,7 @@ export default {
         <img
           src="https://i.postimg.cc/0jVhbXr4/integra-icon.png"
           class="h-8 mr-3 sm:h-10 lg:h-16"
-          :alt="`${appTitle} Logo`"
+          :alt="`${APP_TITLE} Logo`"
         />
       </nuxt-link>
 
@@ -136,7 +119,7 @@ export default {
                 data-dropdown-menu
                 class="absolute hidden z-10 w-full mt-2 lg:mt-4 overflow-hidden bg-white rounded-lg shadow-lg lg:w-48 dark:bg-zinc-700 lg:dark:text-white lg:dark:border-zinc-700 lg:dark:shadow-none"
               >
-                <ul class="flex flex-col p-2 space-y-2">
+                <ul class="flex flex-col p-2 space-y-2 max-h-80 overflow-y-auto">
                   <li>
                     <nuxt-link
                       :to="site._path"

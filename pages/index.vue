@@ -1,14 +1,3 @@
-<script lang="ts">
-import IndexHeader from '@/components/index-header/index-header.vue'
-
-export default {
-  name: 'IndexPage',
-  components: {
-    IndexHeader
-  }
-}
-</script>
-
 <template>
   <div class="index-page">
     <Head>

@@ -1,0 +1,7 @@
+.diana-page .router-link-exact-active {
+  @apply text-blue-500;
+}
+
+.diana-page h3 {
+  @apply text-xl underline;
+}

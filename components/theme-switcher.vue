@@ -27,7 +27,7 @@ export default {
     class="inline-flex relative gap-x-3 px-1 py-1 border-solid border-2 rounded-3xl border-black dark:border-white"
     title="Zmień motyw"
     aria-label="Zmień motyw"
-    @click="toggleTheme"
+    @click="toggleTheme()"
   >
     <lazy-client-only>
       <fa-icon icon="fa-solid fa-moon" class="h-4 w-4" />

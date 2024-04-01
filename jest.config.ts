@@ -1,4 +1,6 @@
-export default {
+import type { JestConfigWithTsJest } from 'ts-jest'
+
+const jestConfig: JestConfigWithTsJest = {
   preset: '@vue/cli-plugin-unit-jest',
   moduleNameMapper: {
     '^@/(.*)$': '<rootDir>/$1',
@@ -15,3 +17,5 @@ export default {
   collectCoverageFrom: ['<rootDir>/components/**/*.vue', '<rootDir>/pages/**/*.vue'],
   testEnvironment: 'jsdom'
 }
+
+module.exports = jestConfig

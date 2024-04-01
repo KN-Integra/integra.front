@@ -6,7 +6,9 @@
 # https://github.com/github/super-linter
 name: Lint Code Base
 
-on: push
+on:
+  workflow_dispatch:
+
 jobs:
   run-lint:
     runs-on: ubuntu-latest

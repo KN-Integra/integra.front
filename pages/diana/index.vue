@@ -1,21 +1,17 @@
-<script lang="ts">
+<script setup lang="ts">
 definePageMeta({
-  title: 'DIANA',
-  description: 'System do zarządzania kołem naukowym Integra',
-  image: 'https://i.postimg.cc/0jVhbXr4/integra-icon.png',
   middleware: ['auth']
 })
-
-export default {
-  name: 'DianaTestPage'
-}
 </script>
 
 <template>
   <main>
-    <h1>Witaj w systemie DIANA!</h1>
+    <h2 class="mb-2">System DIANA</h2>
 
-    <nuxt-link to="/diana/login">login</nuxt-link>
-    <nuxt-link to="/diana/test">test</nuxt-link>
+    <user-nav />
+
+    <div class="diana-page-content mt-2 flex-grow mb-auto">
+      <NuxtPage />
+    </div>
   </main>
 </template>

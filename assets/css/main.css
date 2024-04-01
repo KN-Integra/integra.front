@@ -9,11 +9,30 @@ body {
   @apply bg-white dark:bg-zinc-900;
 }
 
+/* Page transition effects */
+
+/*
+.page-enter-active,
+.page-leave-active {
+  transition: all 0.3s;
+}
+
+.page-enter-from,
+.page-leave-to {
+  opacity: 0;
+  filter: blur(1rem);
+}
+*/
+
+.diana-page.page-enter-active .diana-page-content,
+.diana-page.page-leave-active .diana-page-content,
 .content-page.page-enter-active main,
 .content-page.page-leave-active main {
   transition: all 0.2s;
 }
 
+.diana-page.page-enter-from .diana-page-content,
+.diana-page.page-leave-to .diana-page-content,
 .content-page.page-enter-from main,
 .content-page.page-leave-to main {
   opacity: 0;

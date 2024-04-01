@@ -1,21 +1,37 @@
-<script lang="ts">
-import LargeFooter from '@/components/large-footer/large-footer.vue'
-import SiteFooter from '@/components/site-footer/site-footer.vue'
+<script setup lang="ts">
+import { initFlowbite } from 'flowbite'
 
-export default {
-  name: 'App',
-  components: {
-    LargeFooter,
-    SiteFooter
+const { $pwa } = useNuxtApp()
+
+onMounted(() => {
+  if ($pwa?.offlineReady) {
+    alert('App ready to work offline')
   }
-}
+
+  if ($pwa?.needRefresh) {
+    const refresh = prompt('App needs refresh. Do you want to do that now?')
+
+    if (!refresh) {
+      return
+    }
+
+    reloadNuxtApp({
+      persistState: true
+    })
+  }
+})
+
+onBeforeMount(() => {
+  initFlowbite()
+})
 </script>
 
 <template>
-  <div class="min-h-screen w-full overflow-y-auto overflow-x-none flex flex-col">
-    <NuxtPage />
+  <div>
+    <VitePwaManifest />
 
-    <large-footer />
-    <site-footer />
+    <NuxtLayout>
+      <NuxtPage />
+    </NuxtLayout>
   </div>
 </template>

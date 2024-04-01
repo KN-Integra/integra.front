@@ -1,9 +1,10 @@
 import { streamToPromise } from 'sitemap'
 import convert from 'xml-js'
 
-import SitemapXML from '@/@types/SitemapXML'
 import checkForLocalhost from '@/helpers/checkForLocalhost'
 import getSitemapStream from '@/helpers/getSitemapStream'
+
+import type { SitemapXML } from '@/types'
 
 import { serverQueryContent } from '#content/server'
 
@@ -24,35 +25,39 @@ export default defineEventHandler(async (event) => {
   docs.forEach((doc) => {
     const index = sitemapJSON.urlset.url.findIndex((url) => url.loc._text === `${hostname}${doc._path}`)
 
-    if (index !== -1) {
-      const { description, title, head, image } = doc
+    if (index === -1) {
+      return
+    }
 
-      const meta = head.meta as IPageMeta[]
+    sitemapJSON.urlset.url[index].loc._text = `${doc._path}`
 
-      if (description) sitemapJSON.urlset.url[index].description = { _text: description }
-      if (image) sitemapJSON.urlset.url[index].image = { _text: doc.image }
-      if (title) sitemapJSON.urlset.url[index].title = { _text: title }
-      if (meta.length) {
-        const author = (meta as IPageMeta[]).find((m) => m.name === 'author')
-        const tags = (meta as IPageMeta[]).find((m) => m.name === 'keywords')
-        const createdAt = (meta as IPageMeta[]).find((m) => m.name === 'createdAt')
+    const { description, title, head, image } = doc
 
-        if (author) {
-          sitemapJSON.urlset.url[index].author = {
-            _text: author.content
-          }
+    const meta = head.meta as IPageMeta[]
+
+    if (description) sitemapJSON.urlset.url[index].description = { _text: description }
+    if (image) sitemapJSON.urlset.url[index].image = { _text: doc.image }
+    if (title) sitemapJSON.urlset.url[index].title = { _text: title }
+    if (meta.length) {
+      const author = (meta as IPageMeta[]).find((m) => m.name === 'author')
+      const tags = (meta as IPageMeta[]).find((m) => m.name === 'keywords')
+      const createdAt = (meta as IPageMeta[]).find((m) => m.name === 'createdAt')
+
+      if (author) {
+        sitemapJSON.urlset.url[index].author = {
+          _text: author.content
         }
+      }
 
-        if (tags) {
-          sitemapJSON.urlset.url[index].tags = {
-            _text: tags.content
-          }
+      if (tags) {
+        sitemapJSON.urlset.url[index].tags = {
+          _text: tags.content
         }
+      }
 
-        if (createdAt) {
-          sitemapJSON.urlset.url[index].createdAt = {
-            _text: createdAt.content
-          }
+      if (createdAt) {
+        sitemapJSON.urlset.url[index].createdAt = {
+          _text: createdAt.content
         }
       }
     }

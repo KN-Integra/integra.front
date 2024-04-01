@@ -1,6 +1,5 @@
 /**
  * Check if hostname is localhost
- *
  * @description This is a workaround for localhost
  * @param {string} hostname - hostname
  * @returns {boolean} - true if hostname is localhost

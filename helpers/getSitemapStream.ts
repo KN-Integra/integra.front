@@ -6,7 +6,6 @@ import { serverQueryContent } from '#content/server'
 
 /**
  * Get sitemap stream
- *
  * @description This function is used to generate a sitemap stream
  * @param {any} event - event
  * @returns {Promise<SitemapStream>} - sitemap stream

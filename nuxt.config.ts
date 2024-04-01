@@ -97,6 +97,19 @@ const icons = [
   }
 ]
 
+const manifest = {
+  name: 'Koło Naukowe Integra AGH',
+  short_name: 'KN Integra',
+  description:
+    'Koło Integra gromadzi ludzi z pasją, którzy poprzez realizację projektów rozwijają swoje zainteresowania. Integra - to jest to!',
+  theme_color: '#8B691C',
+  background_color: '#D0C3A4',
+  icons: icons.map((icon) => ({
+    ...icon,
+    src: icon.href
+  }))
+}
+
 export default defineNuxtConfig({
   app: {
     pageTransition: {
@@ -140,20 +153,17 @@ export default defineNuxtConfig({
   },
 
   css: [
+    '@/assets/css/content.css',
+    '@/assets/css/diana.css',
+    '@/assets/css/flowbite.css',
     '@/assets/css/tailwind.css',
     '@/assets/css/main.css',
     '@/assets/css/markdown.css',
     '@/assets/css/treeview.css',
     'vue3-treeview/dist/style.css'
   ],
-  components: true,
 
-  plugins: [
-    {
-      src: '~/plugins/vercel.ts',
-      mode: 'client'
-    }
-  ],
+  components: true,
 
   colorMode: {
     preference: 'dark',
@@ -172,13 +182,20 @@ export default defineNuxtConfig({
     }
   },
 
+  pwa: {
+    devOptions: { enabled: true },
+    registerType: 'autoUpdate',
+    manifest
+  },
+
   modules: [
     '@nuxt/content',
     '@nuxtjs/color-mode',
-    '@nuxt/image-edge',
     '@pinia/nuxt',
-    '@pinia-plugin-persistedstate/nuxt'
-    // 'vue-sweetalert2/nuxt'
+    '@pinia-plugin-persistedstate/nuxt',
+    '@nuxt/image',
+    '@vite-pwa/nuxt',
+    '@nuxtjs/tailwindcss'
   ],
 
   build: {
@@ -195,5 +212,11 @@ export default defineNuxtConfig({
       tailwindcss: {},
       autoprefixer: {}
     }
+  },
+
+  runtimeConfig: {
+    JWT_SECRET: process.env.NUXT_JWT_SECRET,
+    JWT_EXPIRES_IN: process.env.NUXT_JWT_EXPIRES_IN,
+    JWT_ISSUER: process.env.NUXT_JWT_ISSUER
   }
 })

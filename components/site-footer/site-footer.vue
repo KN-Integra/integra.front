@@ -1,41 +1,28 @@
-<script lang="ts">
+<script setup lang="ts">
 // @ts-expect-error - TS doesn't know about CSS modules
 import style from './site-footer.module.css'
 
-export default {
-  name: 'SiteFooter',
-  layout: 'default',
-  async setup() {
-    const { data: navigation } = await useAsyncData('navigation', () => {
-      return fetchContentNavigation()
-    })
+import type { ISimpleSitemap } from '~/types'
 
-    if (!navigation.value) return {}
+const classes = computed(() => style)
+const year = computed(() => new Date().getFullYear())
 
-    const nav = navigation.value[0].children
+const { data: sitemap } = useAsyncData<ISimpleSitemap[]>('sitemap', async () => {
+  const navigation = await fetchContentNavigation()
 
-    if (!(nav && nav.length)) return {}
+  if (navigation.length === 0) return []
 
-    const sitemap = nav
-      .filter((u) => isNaN(Number(u._path.split('/').at(-1))))
-      .map((u) => ({
-        ...u,
-        children: u.children ? u.children.filter((c) => c._path !== u._path) : undefined
-      }))
+  const nav = navigation[0].children
 
-    return {
-      sitemap
-    }
-  },
-  computed: {
-    classes() {
-      return style
-    },
-    year() {
-      return new Date().getFullYear()
-    }
-  }
-}
+  if (!(nav && nav.length)) return []
+
+  return nav
+    .filter((u) => isNaN(Number(u._path.split('/').at(-1))))
+    .map((u) => ({
+      ...u,
+      children: u.children ? u.children.filter((c) => c._path !== u._path) : undefined
+    }))
+})
 </script>
 
 <template>

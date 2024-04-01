@@ -10,6 +10,7 @@
 }
 
 .navbar-link {
+  @apply whitespace-nowrap;
   @apply w-full block py-2 pl-3 pr-4 rounded lg:border-0 lg:px-4 lg:py-2 text-zinc-700;
   @apply hover:bg-zinc-100 lg:hover:bg-transparent lg:hover:text-blue-700 dark:text-zinc-400;
   @apply dark:hover:text-white dark:focus:text-white dark:border-zinc-700 dark:hover:bg-zinc-700;
