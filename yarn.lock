@@ -2183,10 +2183,10 @@
     semver "^7.3.5"
     tar "^6.1.11"
 
-"@neondatabase/serverless@0.6.0":
-  version "0.6.0"
-  resolved "https://registry.yarnpkg.com/@neondatabase/serverless/-/serverless-0.6.0.tgz#efe001f571e85af79c8042601ec694f96ca8fb17"
-  integrity sha512-qXxBRYN0m2v8kVQBfMxbzNGn2xFAhTXFibzQlE++NfJ56Shz3m7+MyBBtXDlEH+3Wfa6lToDXf1MElocY4sJ3w==
+"@neondatabase/serverless@0.7.2":
+  version "0.7.2"
+  resolved "https://registry.yarnpkg.com/@neondatabase/serverless/-/serverless-0.7.2.tgz#4deeda842df154e061b8e798dec5d03d1310fa92"
+  integrity sha512-wU3WA2uTyNO7wjPs3Mg0G01jztAxUxzd9/mskMmtPwPTjf7JKWi9AW5/puOGXLxmZ9PVgRFeBVRVYq5nBPhsCg==
   dependencies:
     "@types/pg" "8.6.6"
 
@@ -3987,19 +3987,19 @@
     node-gyp-build "^4.2.2"
     resolve-from "^5.0.0"
 
-"@vercel/postgres-kysely@^0.6.0":
-  version "0.6.0"
-  resolved "https://registry.yarnpkg.com/@vercel/postgres-kysely/-/postgres-kysely-0.6.0.tgz#07a7c5ee5dddf634fd8ab8140d3f4182fcf4f04e"
-  integrity sha512-R5iSb7aM0XDztcOXfBaBBgdIHLtn0auFCXXJA6gq0GCWSZyBTv4OawsIWxix4lSjqql/MKmze7zvAVP21UkxMg==
+"@vercel/postgres-kysely@^0.8.0":
+  version "0.8.0"
+  resolved "https://registry.yarnpkg.com/@vercel/postgres-kysely/-/postgres-kysely-0.8.0.tgz#d50f75ebb820bf72ad47b085cd1ab74d16135c0a"
+  integrity sha512-3VCkqwtJ1p7p6P7tURJxDDVb6a7riXK8O2dsnXNESZ+C0txHLSNGlvL88w63isn10aBLJ2E1oGLqrgJRX72vJw==
   dependencies:
-    "@vercel/postgres" "0.5.1"
+    "@vercel/postgres" "0.8.0"
 
-"@vercel/postgres@0.5.1":
-  version "0.5.1"
-  resolved "https://registry.yarnpkg.com/@vercel/postgres/-/postgres-0.5.1.tgz#af986133f5ec53b4839561fc3cc2a5fb1867868d"
-  integrity sha512-JKl8QOBIDnifhkxAhIKtY0A5Tb8oWBf2nzZhm0OH7Ffjsl0hGVnDL2w1/FCfpX8xna3JAWM034NGuhZfTFdmiw==
+"@vercel/postgres@0.8.0":
+  version "0.8.0"
+  resolved "https://registry.yarnpkg.com/@vercel/postgres/-/postgres-0.8.0.tgz#ea658c8b19d883b1225d2e3d195e7251254936cd"
+  integrity sha512-/QUV9ExwaNdKooRjOQqvrKNVnRvsaXeukPNI5DB1ovUTesglfR/fparw7ngo1KUWWKIVpEj2TRrA+ObRHRdaLg==
   dependencies:
-    "@neondatabase/serverless" "0.6.0"
+    "@neondatabase/serverless" "0.7.2"
     bufferutil "4.0.8"
     utf-8-validate "6.0.3"
     ws "8.14.2"
