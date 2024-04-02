@@ -1,15 +1,23 @@
 import { useUserStore } from '~/store/user.store'
 
-import { authRouteMiddleware } from './auth'
-
 import type { RouteLocationNormalized } from '#vue-router'
 import type { AuthContext } from '~/server/utils/auth'
 
 /**
- *
+ * @description This is a function that returns a redirect object if the user is not logged in.
+ * @param {RouteLocationNormalized} to - The route that the user is navigating to.
+ * @returns {RouteLocationNormalized} - The redirect object.
  */
-export async function adminRouteMiddleware(): Promise<RouteLocationNormalized | void> {
+export async function adminRouteMiddleware(to: RouteLocationNormalized): Promise<RouteLocationNormalized | void> {
   const userStore = useUserStore()
+
+  if (!(userStore.tokenType && userStore.accessToken)) {
+    return {
+      path: '/diana/login',
+      query: { redirect: to.fullPath },
+      redirectedFrom: to.fullPath
+    } as unknown as RouteLocationNormalized
+  }
 
   try {
     const { data, error } = await useFetch<{ results: AuthContext }>('/v1/auth/me', {
@@ -40,12 +48,4 @@ export async function adminRouteMiddleware(): Promise<RouteLocationNormalized | 
   }
 }
 
-export default defineNuxtRouteMiddleware(async (to) => {
-  const redirect = await authRouteMiddleware(to)
-
-  if (redirect) {
-    return redirect
-  }
-
-  return await adminRouteMiddleware()
-})
+export default defineNuxtRouteMiddleware((to) => adminRouteMiddleware(to))

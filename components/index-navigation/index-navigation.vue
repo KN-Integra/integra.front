@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import ThemeSwitcher from '@/components/theme-switcher.vue'
 import { APP_TITLE } from '@/settings/constants'
+import getNavigationContent from '~/helpers/getNavigationContent'
 
 import style from './index-navigation.module.css'
 
@@ -10,22 +11,7 @@ const navbarOpen = ref(false)
 
 const classes = computed(() => style)
 
-const { data: sitemap } = useAsyncData<ISimpleSitemap[]>('sitemap', async () => {
-  const navigation = await fetchContentNavigation()
-
-  if (navigation.length === 0) return []
-
-  const nav = navigation[0].children
-
-  if (!(nav && nav.length)) return []
-
-  return nav
-    .filter((u) => isNaN(Number(u._path.split('/').at(-1))))
-    .map((u) => ({
-      ...u,
-      children: u.children ? u.children.filter((c) => c._path !== u._path) : undefined
-    }))
-})
+const { data: sitemap } = useAsyncData<ISimpleSitemap[]>('sitemap', getNavigationContent)
 
 /**
  *
