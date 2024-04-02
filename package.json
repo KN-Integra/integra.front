@@ -1,7 +1,9 @@
 {
   "name": "integra-front",
+  "private": true,
+  "author": "SKN Integra AGH",
   "version": "1.0.0",
-  "license": "MIT",
+  "license": "UNLICENSED",
   "scripts": {
     "dev": "nuxt dev --host",
     "preview": "nuxt preview",
