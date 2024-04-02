@@ -37,7 +37,7 @@
     "@vercel/postgres-kysely": "^0.6.0",
     "@vercel/speed-insights": "^1.0.10",
     "dotenv": "^16.3.1",
-    "eslint-plugin-jsdoc": "^46.9.1",
+    "eslint-plugin-jsdoc": "^48.2.2",
     "flowbite": "^2.3.0",
     "flowbite-vue": "^0.1.2",
     "h3": "^1.9.0",
