@@ -56,7 +56,7 @@ jobs:
     - name: Snyk
       uses: snyk/actions@0.4.0
       env:
-        SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+        SNYK_TOKEN: ${{ secrets.SNYK_AUTH_TOKEN }}
       with:
         command: monitor
 
