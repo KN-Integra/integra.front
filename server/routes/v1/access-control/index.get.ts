@@ -25,7 +25,7 @@ export default defineEventHandler(
       return context
     }
 
-    const access = await verifyAccess(context, '/access-control', 'GET')
+    const access = await verifyAccess(context as AuthContext, '/access-control', 'GET')
 
     if (!access) {
       return createError({ statusCode: 403, message: 'Forbidden' })

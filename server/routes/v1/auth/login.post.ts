@@ -29,7 +29,7 @@ export default defineEventHandler(async (event): Promise<ILoginResponseBody | Er
     .withSchema('integra')
     .selectFrom('users')
     .innerJoin('permissions', 'users.permission_id', 'permissions.id')
-    .select(['users.id', 'users.email', 'permissions.name as permission_name'])
+    .select(['users.id', 'users.email', 'permissions.name as permission'])
     .where('email', '=', email)
     .where('password', '=', await hash(password))
     .where('permissions.name', '!=', 'blocked')
@@ -37,10 +37,6 @@ export default defineEventHandler(async (event): Promise<ILoginResponseBody | Er
 
   if (!user) {
     return createError({ statusCode: 401, message: 'Invalid email or password' })
-  }
-
-  if (user.permission_name === 'unverified') {
-    return createError({ statusCode: 401, message: 'Please verify your email' })
   }
 
   const lastToken = await db

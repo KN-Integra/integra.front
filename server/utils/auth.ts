@@ -1,10 +1,12 @@
 import { createKysely } from '@vercel/postgres-kysely'
 
 import * as jwt from '~/server/utils/jwt'
+import verifyAccess from '~/server/utils/rbac'
 
 import type { NuxtError } from '@nuxt/types'
 import type { H3Event } from 'h3'
 import type { Database } from '~/models'
+import type { AccessResourceMethods } from '~/models/AccessResources'
 import type UserPayload from '~/types/UserPayload'
 
 export interface AuthContext {
@@ -14,12 +16,14 @@ export interface AuthContext {
 }
 
 /**
- *
- * @param event
+ * Verify access to a resource
+ * @param {H3Event} event The event object
+ * @returns {AuthContext | NuxtError} The user context or an error
  */
 export async function user(event: H3Event): Promise<AuthContext | NuxtError> {
   const db = createKysely<Database>()
   const header = getHeader(event, 'Authorization')
+  const query = getQuery(event)
 
   if (!header) return createError({ statusCode: 401, message: 'Unauthorized' })
 
@@ -43,7 +47,7 @@ export async function user(event: H3Event): Promise<AuthContext | NuxtError> {
     .withSchema('integra')
     .selectFrom('users')
     .innerJoin('permissions', 'users.permission_id', 'permissions.id')
-    .select(['users.id', 'users.email', 'permissions.name as permission_name'])
+    .select(['users.id', 'users.email', 'permissions.name as permission'])
     .where('email', '=', data.email)
     .where('permissions.name', '!=', 'blocked')
     .executeTakeFirst()
@@ -52,11 +56,27 @@ export async function user(event: H3Event): Promise<AuthContext | NuxtError> {
     throw createError({ statusCode: 401, message: 'Invalid token' })
   }
 
-  if (usr.permission_name === 'unverified') {
+  if (usr.permission === 'unverified') {
     throw createError({ statusCode: 401, message: 'Please verify your email' })
   }
 
-  return { id: usr.id, email: usr.email, permission: usr.permission_name }
+  if (usr.permission === 'unverified') {
+    return createError({ statusCode: 401, message: 'Please verify your account' })
+  }
+
+  if (query.resource) {
+    const hasAccess = verifyAccess(
+      usr,
+      query.resource as string,
+      (query.resourceMethod as AccessResourceMethods | undefined) || 'GET'
+    )
+
+    if (!hasAccess) {
+      return createError({ statusCode: 403, message: 'Forbidden' })
+    }
+  }
+
+  return { id: usr.id, email: usr.email, permission: usr.permission }
 }
 
 /**
