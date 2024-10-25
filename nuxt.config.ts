@@ -152,6 +152,12 @@ export default defineNuxtConfig({
     },
   },
 
+  routes: {
+    '/v1/*': {
+      cors: true,
+    },
+  },
+
   nitro: {
     prerender: {
       routes: ['/sitemap.xml']
