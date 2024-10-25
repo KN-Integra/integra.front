@@ -24,6 +24,7 @@ export default defineEventHandler(async (event) => {
   const { id: userId } = context as auth.AuthContext
 
   const lastToken = await db
+    .withSchema('integra')
     .selectFrom('access_tokens')
     .select('token')
     .where('user_id', '=', userId)
@@ -32,7 +33,12 @@ export default defineEventHandler(async (event) => {
     .executeTakeFirst()
 
   if (lastToken) {
-    await db.updateTable('access_tokens').set({ expires_at: new Date() }).where('token', '=', lastToken.token).execute()
+    await db
+      .withSchema('integra')
+      .updateTable('access_tokens')
+      .set({ expires_at: new Date() })
+      .where('token', '=', lastToken.token)
+      .execute()
   }
 
   return {

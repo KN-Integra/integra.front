@@ -23,6 +23,7 @@ export default async function verifyAccess(
     const db = createKysely<Database>()
 
     const accessControl = await db
+      .withSchema('integra')
       .selectFrom('access_control')
       .select(['method', 'path'])
       .where('user_id', '=', context.id)

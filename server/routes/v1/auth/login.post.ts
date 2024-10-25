@@ -26,6 +26,7 @@ export default defineEventHandler(async (event): Promise<ILoginResponseBody | Er
   const { email, password } = await readBody(event)
 
   const user = await db
+    .withSchema('integra')
     .selectFrom('users')
     .innerJoin('permissions', 'users.permission_id', 'permissions.id')
     .select(['users.id', 'users.email', 'permissions.name as permission_name'])
@@ -43,6 +44,7 @@ export default defineEventHandler(async (event): Promise<ILoginResponseBody | Er
   }
 
   const lastToken = await db
+    .withSchema('integra')
     .selectFrom('access_tokens')
     .select('token')
     .where('user_id', '=', user.id)
@@ -69,7 +71,8 @@ export default defineEventHandler(async (event): Promise<ILoginResponseBody | Er
 
   const token = await jwt.encrypt<UserPayload>({ email })
 
-  db.insertInto('access_tokens')
+  db.withSchema('integra')
+    .insertInto('access_tokens')
     .values({
       token,
       user_id: user.id,

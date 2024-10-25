@@ -41,6 +41,7 @@ export default defineEventHandler(
 
     if (permission !== 'admin') {
       const users = (await db
+        .withSchema('integra')
         .selectFrom('users')
         .select(['first_name', 'last_name', 'email', 'gender'])
         .execute()) as BaseUserPayload[]
@@ -52,6 +53,7 @@ export default defineEventHandler(
     }
 
     const users = (await db
+      .withSchema('integra')
       .selectFrom('users')
       .innerJoin('permissions', 'users.permission_id', 'permissions.id')
       .select(({ selectFrom }) => [

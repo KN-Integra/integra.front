@@ -40,6 +40,7 @@ export async function user(event: H3Event): Promise<AuthContext | NuxtError> {
   }
 
   const usr = await db
+    .withSchema('integra')
     .selectFrom('users')
     .innerJoin('permissions', 'users.permission_id', 'permissions.id')
     .select(['users.id', 'users.email', 'permissions.name as permission_name'])

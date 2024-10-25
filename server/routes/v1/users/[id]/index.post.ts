@@ -39,6 +39,7 @@ export default defineEventHandler(async (event) => {
   const { permission, id } = context as auth.AuthContext
 
   const currentUser = await db
+    .withSchema('integra')
     .selectFrom('users')
     .select(['first_name', 'last_name', 'gender', 'email', 'password', 'permission_id', 'student_id'])
     .where('users.id', '=', params.id)
@@ -67,6 +68,7 @@ export default defineEventHandler(async (event) => {
     }
 
     const user = await db
+      .withSchema('integra')
       .updateTable('users')
       .set({
         email: body.email || currentUser.email,
@@ -90,6 +92,7 @@ export default defineEventHandler(async (event) => {
   }
 
   const user = await db
+    .withSchema('integra')
     .updateTable('users')
     .set({
       first_name: body.first_name || currentUser.first_name,

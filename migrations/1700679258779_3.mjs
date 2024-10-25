@@ -6,7 +6,7 @@ import { Kysely } from 'kysely'
  * @param {Kysely<any>} db - The database instance.
  */
 export async function up(db) {
-  await db.schema.alterTable('access_tokens').addColumn('token', 'varchar').execute()
+  await db.schema.withSchema('integra').alterTable('access_tokens').addColumn('token', 'varchar').execute()
 }
 
 /**
@@ -15,5 +15,5 @@ export async function up(db) {
  * @param {Kysely<any>} db - The database instance.
  */
 export async function down(db) {
-  await db.schema.alterTable('access_tokens').dropColumn('token').execute()
+  await db.schema.withSchema('integra').alterTable('access_tokens').dropColumn('token').execute()
 }

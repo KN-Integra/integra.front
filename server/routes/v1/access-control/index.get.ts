@@ -35,6 +35,7 @@ export default defineEventHandler(
 
     if (permission !== 'admin') {
       const accessControl = await db
+        .withSchema('integra')
         .selectFrom('access_control')
         .select(['id', 'name', 'method', 'path'])
         .where('user_id', '=', id)
@@ -47,6 +48,7 @@ export default defineEventHandler(
     }
 
     const accessControl = await db
+      .withSchema('integra')
       .selectFrom('access_control')
       .innerJoin('users', 'access_control.user_id', 'users.id')
       .select([

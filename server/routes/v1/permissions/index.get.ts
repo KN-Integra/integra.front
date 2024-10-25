@@ -13,7 +13,7 @@ export default defineEventHandler(async (event) => {
     return context
   }
 
-  const permissions = await db.selectFrom('permissions').select(['id', 'name']).execute()
+  const permissions = await db.withSchema('integra').selectFrom('permissions').select(['id', 'name']).execute()
 
   return {
     statusCode: 200,

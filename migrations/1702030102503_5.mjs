@@ -6,6 +6,7 @@ import { Kysely, sql } from 'kysely'
  */
 export async function up(db) {
   await db.schema
+    .withSchema('integra')
     .createTable('access_control')
     .addColumn('id', 'uuid', (col) => col.primaryKey().defaultTo(sql`gen_random_uuid()`))
     .addColumn('name', 'varchar(10)', (col) => col.notNull().unique())
@@ -21,5 +22,5 @@ export async function up(db) {
  * @param {Kysely<any>} db - The database instance.
  */
 export async function down(db) {
-  await db.schema.dropTable('access_control').execute()
+  await db.schema.withSchema('integra').dropTable('integra.access_control').execute()
 }

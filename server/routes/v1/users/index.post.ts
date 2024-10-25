@@ -52,6 +52,7 @@ export default defineEventHandler(async (event) => {
   } as InsertableUserRow
 
   const user = await db
+    .withSchema('integra')
     .insertInto('users')
     .values(row)
     .returning(['first_name', 'last_name', 'email'])

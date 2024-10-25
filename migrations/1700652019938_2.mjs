@@ -14,7 +14,7 @@ export async function up(db) {
     .where('name', '=', 'banned')
     .execute()
 
-  await db.deleteFrom('permissions').where('name', '=', 'moderator').execute()
+  await db.withSchema('integra').deleteFrom('permissions').where('name', '=', 'moderator').execute()
 }
 
 /**
@@ -24,6 +24,7 @@ export async function up(db) {
  */
 export async function down(db) {
   await db
+    .withSchema('integra')
     .updateTable('permissions')
     .set({
       name: 'banned'
