@@ -62,7 +62,6 @@ export default defineEventHandler(
         'users.first_name as user_first_name',
         'users.last_name as user_last_name'
       ])
-      .where('user_id', '=', id)
       .execute()
 
     return {

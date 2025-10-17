@@ -129,7 +129,7 @@ async function saveUser() {
   if (invalid) return alert(invalid)
 
   try {
-    await $fetch(`/v1/access-control/${resourceData.value.id}`, {
+    await $fetch(`/v1/access-control/${resourceData.value.id || ''}`, {
       method: 'POST',
       headers: {
         Authorization: `${userStore.tokenType} ${userStore.accessToken}`
@@ -172,13 +172,13 @@ function shortenId(id: string) {
 
 <template>
   <section class="mt-8">
-    <div class="flex justify-between items-center mb-2">
+    <div class="flex items-center justify-between mb-2">
       <h3 class="text-3xl font-bold">Uprawnienia</h3>
 
-      <fwb-button color="green" class="flowbite gap-2" @click="openModal()">
-        <span class="inline-flex justify-center items-center flex-nowrap gap-2">
+      <fwb-button color="green" class="gap-2 flowbite" @click="openModal()">
+        <span class="inline-flex items-center justify-center gap-2 flex-nowrap">
           <lazy-client-only>
-            <fa-icon icon="fas fa-plus" class="h-4 w-4" />
+            <fa-icon icon="fas fa-plus" class="w-4 h-4" />
           </lazy-client-only>
 
           <span>Dodaj uprawnienia</span>
@@ -229,12 +229,12 @@ function shortenId(id: string) {
           }}</fwb-table-cell>
 
           <fwb-table-cell>
-            <div class="flex justify-center items-center gap-2">
+            <div class="flex items-center justify-center gap-2">
               <fwb-button class="flowbite !p-2">
                 <span class="sr-only">Usuń</span>
 
                 <lazy-client-only>
-                  <fa-icon icon="far fa-trash-alt" class="h-4 w-4" />
+                  <fa-icon icon="far fa-trash-alt" class="w-4 h-4" />
                 </lazy-client-only>
               </fwb-button>
             </div>
@@ -291,7 +291,7 @@ function shortenId(id: string) {
       </template>
 
       <template #footer>
-        <div class="w-full inline-flex justify-center gap-4">
+        <div class="inline-flex justify-center w-full gap-4">
           <fwb-button color="alternative" @click="closeModal()"> Anuluj </fwb-button>
           <fwb-button color="green" @click="saveUser()"> Zapisz </fwb-button>
         </div>
@@ -302,7 +302,7 @@ function shortenId(id: string) {
       v-if="showSuccessToast"
       divide
       type="success"
-      class="flowbite toast fixed top-20 right-1/2 translate-x-1/2 sm:right-8 sm:translate-x-0"
+      class="fixed translate-x-1/2 flowbite toast top-20 right-1/2 sm:right-8 sm:translate-x-0"
     >
       Zasób uprawnień został dodany pomyślnie.
     </fwb-toast>
@@ -311,7 +311,7 @@ function shortenId(id: string) {
       v-if="showErrorToast"
       divide
       type="warning"
-      class="flowbite toast fixed top-20 right-1/2 translate-x-1/2 sm:right-8 sm:translate-x-0"
+      class="fixed translate-x-1/2 flowbite toast top-20 right-1/2 sm:right-8 sm:translate-x-0"
     >
       Wystąpił błąd podczas tworzenia zasobu uprawnień.
     </fwb-toast>
