@@ -1,32 +1,48 @@
 <script setup lang="ts">
+import getNavigationContent from "~/helpers/getNavigationContent";
+
 // @ts-expect-error - TS doesn't know about CSS modules
-import getNavigationContent from '~/helpers/getNavigationContent'
+import style from "./site-footer.module.css";
 
-import style from './site-footer.module.css'
+import type { ISimpleSitemap } from "~/types";
 
-import type { ISimpleSitemap } from '~/types'
+const classes = computed(() => style);
+const year = computed(() => new Date().getFullYear());
 
-const classes = computed(() => style)
-const year = computed(() => new Date().getFullYear())
-
-const { data: sitemap } = useAsyncData<ISimpleSitemap[]>('sitemap', getNavigationContent)
+const { data: sitemap } = useAsyncData<ISimpleSitemap[]>(
+  "sitemap",
+  getNavigationContent,
+);
 </script>
 
 <template>
   <footer :class="classes['site-footer']">
-    <div class="w-full mx-auto container md:p-6 p-4 md:flex md:items-center md:justify-between">
+    <div
+      class="w-full mx-auto container md:p-6 p-4 md:flex md:items-center md:justify-between"
+    >
       <span class="text-sm text-zinc-500 sm:text-center dark:text-zinc-400">
-        © {{ year }} <nuxt-link to="/" class="hover:underline">Integra</nuxt-link> -
+        © {{ year }}
+        <nuxt-link to="/" class="hover:underline">Integra</nuxt-link> -
         <nuxt-link
-          to="http://www.integra.agh.edu.pl/wp-content/uploads/2021/11/Regulamin-KN-Integra-01.07.2021.pdf"
+          to="/StatutAkt.pdf"
+          external
+          target="_blank"
           class="hover:underline"
         >
           Statut
         </nuxt-link>
       </span>
-      <ul class="flex flex-wrap items-center mt-3 text-sm text-zinc-500 dark:text-zinc-400 sm:mt-0">
-        <li v-for="item in sitemap" :key="item._path" class="mr-4 md:mr-6 last:m-0">
-          <nuxt-link :to="item._path" class="hover:underline">{{ item.title }}</nuxt-link>
+      <ul
+        class="flex flex-wrap items-center mt-3 text-sm text-zinc-500 dark:text-zinc-400 sm:mt-0"
+      >
+        <li
+          v-for="item in sitemap"
+          :key="item._path"
+          class="mr-4 md:mr-6 last:m-0"
+        >
+          <nuxt-link :to="item._path" class="hover:underline">{{
+            item.title
+          }}</nuxt-link>
         </li>
       </ul>
     </div>
